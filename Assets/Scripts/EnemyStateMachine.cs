@@ -25,7 +25,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     //time for action
     private bool actionStarted = false;
-    private GameObject actionTarget;
+    public GameObject actionTarget;
+    private float animSpeed = 5f;
 
     void Start()
     {
@@ -73,6 +74,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         HandleTurn myAttack = new HandleTurn();
         myAttack.attacker = enemy.name;
+        myAttack.type = "Enemy";
         myAttack.attackerGameObject = this.gameObject;
         myAttack.targetGameObject = battleSM.heroesInBattle[ Random.Range(0, battleSM.heroesInBattle.Count) ];
 
@@ -87,24 +89,28 @@ public class EnemyStateMachine : MonoBehaviour
         }
 
         actionStarted = true;
-        //animate the enemy near the hero to attack
-        Vector3 targetPosition = actionTarget.transform.position;
-        while(MoveTowardsTarget(targetPosition))
-        {
-
-        }
+        //animate the enemy near the target to attack
+        Vector3 targetPosition = new Vector3(actionTarget.transform.position.x - 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);
+        while(MoveTowardsTarget(targetPosition)) {  yield return null; }
 
         //wait
+        yield return new WaitForSeconds(0.5f);
 
         //do damage
 
         //animate back to start position
+        Vector3 firstPosition = startPosition;
+        while (MoveTowardsTarget(firstPosition)) { yield return null; }
 
         //remove this performer from the list in battleSM
+        battleSM.performList.RemoveAt(0);
 
         //reset the battleSM
+        battleSM.battleState = BattleStateMachine.PerformAction.WAIT;
 
+        //end coroutine
         actionStarted = false;
+
         //reset this enemy state
         currCooldown = 0f;
         currentState = TurnState.PROCESSING;
@@ -112,6 +118,6 @@ public class EnemyStateMachine : MonoBehaviour
 
     private bool MoveTowardsTarget(Vector3 target)
     {
-        return true;
+        return target != ( transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime) );
     }
 }

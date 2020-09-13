@@ -6,6 +6,7 @@ using UnityEngine;
 public class HandleTurn
 {
     public string attacker; //name of attacker
+    public string type; //enemy or hero
     public GameObject attackerGameObject; //who is attacking
     public GameObject targetGameObject; //who is attacked
 
