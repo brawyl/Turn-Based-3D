@@ -34,7 +34,10 @@ public class BattleStateMachine : MonoBehaviour
     private HandleTurn heroChoice;
 
     public GameObject enemyButton;
-    public Transform Spacer;
+    public Transform spacer;
+
+    public GameObject attackPanel;
+    public GameObject targetSelectPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,10 @@ public class BattleStateMachine : MonoBehaviour
         battleState = PerformAction.WAIT;
         enemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         heroesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
+        heroInput = HeroGUI.ACTIVATE;
+
+        attackPanel.SetActive(false);
+        targetSelectPanel.SetActive(false);
 
         EnemyButtons();
     }
@@ -57,6 +64,7 @@ public class BattleStateMachine : MonoBehaviour
                     battleState = PerformAction.TAKEACTION;
                 }
                 break;
+
             case PerformAction.TAKEACTION:
                 GameObject performer = GameObject.Find(performList[0].attacker);
                 if (performList[0].type == "Enemy")
@@ -67,12 +75,35 @@ public class BattleStateMachine : MonoBehaviour
                 }
                 if (performList[0].type == "Hero")
                 {
-
+                    Debug.Log("Hero is here to perform");
                 }
                 battleState = PerformAction.PERFORMACTION;
                 break;
+
             case PerformAction.PERFORMACTION:
 
+                break;
+        }
+
+        switch (heroInput)
+        {
+            case HeroGUI.ACTIVATE:
+                if (heroesToManage.Count > 0)
+                {
+                    heroesToManage[0].transform.Find("Selector").gameObject.SetActive(true);
+                    heroChoice = new HandleTurn();
+
+                    attackPanel.SetActive(true);
+                    heroInput = HeroGUI.WAITING;
+                }
+                break;
+
+            case HeroGUI.WAITING:
+                //idle
+                break;
+
+            case HeroGUI.DONE:
+                HeroInputDone();
                 break;
         }
     }
@@ -94,9 +125,34 @@ public class BattleStateMachine : MonoBehaviour
             Text buttonText = newButton.GetComponentInChildren<Text>();
             buttonText.text = currEnemy.name;
 
-            button.EnemyPrefab = enemy;
+            button.enemyPrefab = enemy;
 
-            newButton.transform.SetParent(Spacer, false);
+            newButton.transform.SetParent(spacer, false);
         }
+    }
+
+    public void InputAction()
+    {
+        heroChoice.attacker = heroesToManage[0].name;
+        heroChoice.attackerGameObject = heroesToManage[0];
+        heroChoice.type = "Hero";
+
+        attackPanel.SetActive(false);
+        targetSelectPanel.SetActive(true);
+    }
+
+    public void InputTarget(GameObject target)
+    {
+        heroChoice.targetGameObject = target;
+        heroInput = HeroGUI.DONE;
+    }
+
+    void HeroInputDone()
+    {
+        performList.Add(heroChoice);
+        targetSelectPanel.SetActive(false);
+        heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
+        heroesToManage.RemoveAt(0);
+        heroInput = HeroGUI.ACTIVATE;
     }
 }

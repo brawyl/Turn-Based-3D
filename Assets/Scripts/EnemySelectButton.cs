@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemySelectButton : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
+    public GameObject enemyPrefab;
 
     public void SelectEnemy()
     {
         //save input enemy prefab
-        GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
+        GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().InputTarget(enemyPrefab);
     }
 }

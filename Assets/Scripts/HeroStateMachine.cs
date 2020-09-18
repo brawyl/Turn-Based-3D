@@ -23,9 +23,13 @@ public class HeroStateMachine : MonoBehaviour
     private float currCooldown = 0f;
     private float maxCooldown = 5f;
     public Image ProgressBar;
+    public GameObject selector;
 
     void Start()
     {
+        //can use speed stat instead of 2.5f
+        currCooldown = Random.Range(0, 2.5f);
+        selector.SetActive(false);
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         currentState = TurnState.PROCESSING;
     }
