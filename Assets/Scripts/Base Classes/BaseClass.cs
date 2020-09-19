@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BaseHero
+public class BaseClass
 {
-    public string name;
+    public string theName;
 
     public float baseHP;
     public float currHP;
@@ -13,8 +12,8 @@ public class BaseHero
     public float baseMP;
     public float currMP;
 
-    public int stamina;
-    public int intellect;
-    public int dexterity;
-    public int agility;
+    public float baseATK;
+    public float currATK;
+    public float baseDEF;
+    public float currDEF;
 }
