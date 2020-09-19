@@ -24,9 +24,15 @@ public class HeroStateMachine : MonoBehaviour
     private float maxCooldown = 5f;
     public Image ProgressBar;
     public GameObject selector;
+    //IEnumerator
+    public GameObject actionTarget;
+    private bool actionStarted = false;
+    private Vector3 startPosition;
+    private float animSpeed = 10f;
 
     void Start()
     {
+        startPosition = transform.position;
         //can use speed stat instead of 2.5f
         currCooldown = Random.Range(0, 2.5f);
         selector.SetActive(false);
@@ -51,7 +57,7 @@ public class HeroStateMachine : MonoBehaviour
                 //idle
                 break;
             case TurnState.ACTION:
-
+                StartCoroutine(TimeForAction());
                 break;
             case TurnState.DEAD:
 
@@ -69,5 +75,45 @@ public class HeroStateMachine : MonoBehaviour
         {
             currentState = TurnState.ADDTOLIST;
         }
+    }
+
+    private IEnumerator TimeForAction()
+    {
+        if (actionStarted)
+        {
+            yield break;
+        }
+
+        actionStarted = true;
+        //animate the enemy near the target to attack
+        Vector3 targetPosition = new Vector3(actionTarget.transform.position.x + 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);
+        while (MoveTowardsTarget(targetPosition)) { yield return null; }
+
+        //wait
+        yield return new WaitForSeconds(0.5f);
+
+        //do damage
+
+        //animate back to start position
+        Vector3 firstPosition = startPosition;
+        while (MoveTowardsTarget(firstPosition)) { yield return null; }
+
+        //remove this performer from the list in battleSM
+        battleSM.performList.RemoveAt(0);
+
+        //reset the battleSM
+        battleSM.battleState = BattleStateMachine.PerformAction.WAIT;
+
+        //end coroutine
+        actionStarted = false;
+
+        //reset this enemy state
+        currCooldown = 0f;
+        currentState = TurnState.PROCESSING;
+    }
+
+    private bool MoveTowardsTarget(Vector3 target)
+    {
+        return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
     }
 }

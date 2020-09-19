@@ -19,17 +19,18 @@ public class EnemyStateMachine : MonoBehaviour
     public TurnState currentState;
 
     private float currCooldown = 0f;
-    private float maxCooldown = 5f;
+    private float maxCooldown = 10f;
     //this gameobject
     private Vector3 startPosition;
 
     //time for action
     private bool actionStarted = false;
     public GameObject actionTarget;
-    private float animSpeed = 5f;
+    private float animSpeed = 10f;
 
     void Start()
     {
+        currCooldown = Random.Range(0, 2.5f);
         currentState = TurnState.PROCESSING;
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         startPosition = transform.position;
