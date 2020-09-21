@@ -70,8 +70,21 @@ public class BattleStateMachine : MonoBehaviour
                 if (performList[0].type == "Enemy")
                 {
                     EnemyStateMachine enemySM = performer.GetComponent<EnemyStateMachine>();
-                    enemySM.actionTarget = performList[0].targetGameObject;
-                    enemySM.currentState = EnemyStateMachine.TurnState.ACTION;
+                    for (int i=0; i<heroesInBattle.Count; i++)
+                    {
+                        if (performList[0].targetGameObject == heroesInBattle[i])
+                        {
+                            enemySM.actionTarget = performList[0].targetGameObject;
+                            enemySM.currentState = EnemyStateMachine.TurnState.ACTION;
+                            break;
+                        }
+                        else
+                        {
+                            performList[0].targetGameObject = heroesInBattle[Random.Range(0, heroesInBattle.Count)];
+                            enemySM.actionTarget = performList[0].targetGameObject;
+                            enemySM.currentState = EnemyStateMachine.TurnState.ACTION;
+                        }
+                    }
                 }
                 if (performList[0].type == "Hero")
                 {

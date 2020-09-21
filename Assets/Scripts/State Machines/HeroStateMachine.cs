@@ -30,6 +30,8 @@ public class HeroStateMachine : MonoBehaviour
     private Vector3 startPosition;
     private float animSpeed = 10f;
 
+    private bool alive = true;
+
     void Start()
     {
         startPosition = transform.position;
@@ -60,7 +62,45 @@ public class HeroStateMachine : MonoBehaviour
                 StartCoroutine(TimeForAction());
                 break;
             case TurnState.DEAD:
+                if (!alive)
+                {
+                    return;
+                }
+                else
+                {
+                    //change tag of hero
+                    this.gameObject.tag = "DeadHero";
 
+                    //not targetable
+                    battleSM.heroesInBattle.Remove(this.gameObject);
+
+                    //not managable
+                    battleSM.heroesInBattle.Remove(this.gameObject);
+
+                    //deactivate the selector
+                    selector.SetActive(false);
+
+                    //reset GUI
+                    battleSM.attackPanel.SetActive(false);
+                    battleSM.targetSelectPanel.SetActive(false);
+
+                    //remove item from performList
+                    for (int i=0; i<battleSM.performList.Count; i++)
+                    {
+                        if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                        {
+                            battleSM.performList.Remove(battleSM.performList[i]);
+                        }
+                    }
+
+                    //change color / play death animation
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+
+                    //reset heroInput
+                    battleSM.heroInput = BattleStateMachine.HeroGUI.ACTIVATE;
+
+                    alive = false;
+                }
                 break;
         }
     }
