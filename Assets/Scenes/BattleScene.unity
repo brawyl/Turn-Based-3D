@@ -1234,6 +1234,14 @@ PrefabInstance:
       propertyPath: ProgressBar
       value: 
       objectReference: {fileID: 3286389}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.baseHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.currHP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -1552,6 +1560,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2307640131275766403, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.attacks.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
@@ -1606,6 +1618,10 @@ PrefabInstance:
       propertyPath: enemy.agility
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
     - target: {fileID: 7722951089461900587, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_Name
       value: Enemy 2
@@ -1730,12 +1746,24 @@ PrefabInstance:
       value: Hero 1
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: ProgressBar
       value: 
       objectReference: {fileID: 5133541727298303830}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
       value: Hero 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.baseHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.currHP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1898,6 +1926,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.attacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.attacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.attacks.Array.data[1]
+      value: 
+      objectReference: {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
     - target: {fileID: 7722951089461900587, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_Name
       value: Enemy 1

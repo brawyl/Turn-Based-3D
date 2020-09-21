@@ -10,5 +10,6 @@ public class HandleTurn
     public GameObject attackerGameObject; //who is attacking
     public GameObject targetGameObject; //who is attacked
 
-
+    //which attack is performed
+    public BaseAttack chosenAttack;
 }

@@ -116,4 +116,13 @@ public class HeroStateMachine : MonoBehaviour
     {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
     }
+
+    public void TakeDamage(float damageAmount)
+    {
+        hero.currHP -= damageAmount;
+        if (hero.currHP <= 0)
+        {
+            currentState = TurnState.DEAD;
+        }
+    }
 }
