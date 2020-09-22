@@ -91,7 +91,7 @@ public class HeroStateMachine : MonoBehaviour
                     selector.SetActive(false);
 
                     //reset GUI
-                    battleSM.attackPanel.SetActive(false);
+                    battleSM.actionPanel.SetActive(false);
                     battleSM.targetSelectPanel.SetActive(false);
 
                     //remove item from performList
