@@ -22,7 +22,7 @@ public class HeroStateMachine : MonoBehaviour
     //for the progress bar
     private float currCooldown = 0f;
     private float maxCooldown = 5f;
-    public Image ProgressBar;
+    private Image progressBar;
     public GameObject selector;
     //IEnumerator
     public GameObject actionTarget;
@@ -31,9 +31,19 @@ public class HeroStateMachine : MonoBehaviour
     private float animSpeed = 10f;
 
     private bool alive = true;
+    //hero panel
+    private HeroPanelStats stats;
+    public GameObject heroPanel;
+    private Transform heroPanelSpacer;
 
     void Start()
     {
+        //find spacer
+        heroPanelSpacer = GameObject.Find("BattleCanvas").transform.Find("HeroPanel").transform.Find("HeroPanelSpacer");
+
+        //create panel and fill in info
+        CreateHeroPanel();
+
         startPosition = transform.position;
         //can use speed stat instead of 2.5f
         currCooldown = Random.Range(0, 2.5f);
@@ -109,7 +119,7 @@ public class HeroStateMachine : MonoBehaviour
     {
         currCooldown = currCooldown + Time.deltaTime;
         float calcCooldown = currCooldown / maxCooldown;
-        ProgressBar.transform.localScale = new Vector3(Mathf.Clamp(calcCooldown, 0, 1), ProgressBar.transform.localScale.y, ProgressBar.transform.localScale.z);
+        progressBar.transform.localScale = new Vector3(Mathf.Clamp(calcCooldown, 0, 1), progressBar.transform.localScale.y, progressBar.transform.localScale.z);
 
         if (currCooldown >= maxCooldown)
         {
@@ -162,7 +172,27 @@ public class HeroStateMachine : MonoBehaviour
         hero.currHP -= damageAmount;
         if (hero.currHP <= 0)
         {
+            hero.currHP = 0;
             currentState = TurnState.DEAD;
         }
+        UpdateHeroPanel();
+    }
+
+    void CreateHeroPanel()
+    {
+        heroPanel = Instantiate(heroPanel) as GameObject;
+        stats = heroPanel.GetComponent<HeroPanelStats>();
+        stats.heroName.text = hero.theName;
+        stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
+        stats.heroMP.text = "MP: " + hero.currMP + "/" + hero.baseMP;
+
+        progressBar = stats.progressBar;
+        heroPanel.transform.SetParent(heroPanelSpacer, false);
+    }
+
+    void UpdateHeroPanel()
+    {
+        stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
+        stats.heroMP.text = "MP: " + hero.currMP + "/" + hero.baseMP;
     }
 }
