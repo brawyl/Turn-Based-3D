@@ -162,6 +162,7 @@ public class BattleStateMachine : MonoBehaviour
         heroChoice.attacker = heroesToManage[0].name;
         heroChoice.attackerGameObject = heroesToManage[0];
         heroChoice.type = "Hero";
+        heroChoice.chosenAttack = heroesToManage[0].GetComponent<HeroStateMachine>().hero.attacks[0];
 
         actionPanel.SetActive(false);
         targetSelectPanel.SetActive(true);

@@ -128,6 +128,16 @@ public class EnemyStateMachine : MonoBehaviour
         return target != ( transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime) );
     }
 
+    public void TakeDamage(float damageAmount)
+    {
+        enemy.currHP -= damageAmount;
+        if (enemy.currHP <= 0)
+        {
+            enemy.currHP = 0;
+            currentState = TurnState.DEAD;
+        }
+    }
+
     void DoDamage()
     {
         float calculatedDamage = enemy.currATK + battleSM.performList[0].chosenAttack.attackDamage; 

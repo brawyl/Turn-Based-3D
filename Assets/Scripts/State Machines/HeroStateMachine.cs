@@ -143,6 +143,7 @@ public class HeroStateMachine : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         //do damage
+        DoDamage();
 
         //animate back to start position
         Vector3 firstPosition = startPosition;
@@ -176,6 +177,12 @@ public class HeroStateMachine : MonoBehaviour
             currentState = TurnState.DEAD;
         }
         UpdateHeroPanel();
+    }
+
+    void DoDamage()
+    {
+        float calculatedDamage = hero.currATK + battleSM.performList[0].chosenAttack.attackDamage;
+        actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage);
     }
 
     void CreateHeroPanel()
