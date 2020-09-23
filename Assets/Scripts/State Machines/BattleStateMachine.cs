@@ -44,6 +44,7 @@ public class BattleStateMachine : MonoBehaviour
     public Transform actionSpacer;
     public Transform magicSpacer;
     public GameObject actionButton;
+    public GameObject magicActionButton;
     private List<GameObject> attackButtons = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -201,8 +202,44 @@ public class BattleStateMachine : MonoBehaviour
         GameObject magicButton = Instantiate(actionButton) as GameObject;
         Text magicButtonText = magicButton.transform.Find("Text").gameObject.GetComponent<Text>();
         magicButtonText.text = "Magic";
-
+        magicButton.GetComponent<Button>().onClick.AddListener(() => InputMagicAction());
         magicButton.transform.SetParent(actionSpacer, false);
         attackButtons.Add(magicButton);
+
+        if (heroesToManage[0].GetComponent<HeroStateMachine>().hero.MagicAttacks.Count > 0)
+        {
+            foreach(BaseAttack magicAttack in heroesToManage[0].GetComponent<HeroStateMachine>().hero.MagicAttacks)
+            {
+                GameObject spellButton = Instantiate(magicActionButton) as GameObject;
+                Text spellButtonText = spellButton.transform.Find("Text").gameObject.GetComponent<Text>();
+                spellButtonText.text = magicAttack.attackName;
+
+                AttackButton atkBtn = spellButton.GetComponent<AttackButton>();
+                atkBtn.magicAttackToPerform = magicAttack;
+                spellButton.transform.SetParent(magicSpacer, false);
+                attackButtons.Add(spellButton);
+            }
+        }
+        else
+        {
+            magicButton.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void InputMagicAction()
+    {
+        actionPanel.SetActive(false);
+        magicPanel.SetActive(true);
+    }
+
+    public void InputMagic(BaseAttack chosenMagic)
+    {
+        heroChoice.attacker = heroesToManage[0].name;
+        heroChoice.attackerGameObject = heroesToManage[0];
+        heroChoice.type = "Hero";
+
+        heroChoice.chosenAttack = chosenMagic;
+        magicPanel.SetActive(false);
+        targetSelectPanel.SetActive(true);
     }
 }
