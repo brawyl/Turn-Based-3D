@@ -107,7 +107,7 @@ public class HeroStateMachine : MonoBehaviour
                     this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
 
                     //reset heroInput
-                    battleSM.heroInput = BattleStateMachine.HeroGUI.ACTIVATE;
+                    battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
 
                     alive = false;
                 }

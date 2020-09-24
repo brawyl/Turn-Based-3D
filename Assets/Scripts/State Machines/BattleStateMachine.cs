@@ -9,7 +9,10 @@ public class BattleStateMachine : MonoBehaviour
     {
         WAIT,
         TAKEACTION,
-        PERFORMACTION
+        PERFORMACTION,
+        CHECKALIVE,
+        WIN,
+        LOSE
     }
 
     public PerformAction battleState;
@@ -107,6 +110,29 @@ public class BattleStateMachine : MonoBehaviour
             case PerformAction.PERFORMACTION:
                 //idle
                 break;
+            case PerformAction.CHECKALIVE:
+                if (heroesInBattle.Count < 1)
+                {
+                    battleState = PerformAction.LOSE;
+                }
+                else if (enemiesInBattle.Count < 1)
+                {
+                    battleState = PerformAction.WIN;
+                }
+                else
+                {
+                    ClearAttackPanel();
+                    heroInput = HeroGUI.ACTIVATE;
+                }
+                break;
+
+            case PerformAction.WIN:
+                
+                break;
+
+            case PerformAction.LOSE:
+                
+                break;
         }
 
         switch (heroInput)
@@ -177,18 +203,26 @@ public class BattleStateMachine : MonoBehaviour
     void HeroInputDone()
     {
         performList.Add(heroChoice);
-        targetSelectPanel.SetActive(false);
 
         //clean up attack panel
-        foreach(GameObject atkBtn in attackButtons)
-        {
-            Destroy(atkBtn);
-        }
-        attackButtons.Clear();
+        ClearAttackPanel();
 
         heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
         heroesToManage.RemoveAt(0);
         heroInput = HeroGUI.ACTIVATE;
+    }
+
+    void ClearAttackPanel()
+    {
+        targetSelectPanel.SetActive(false);
+        actionPanel.SetActive(false);
+        magicPanel.SetActive(false);
+
+        foreach (GameObject atkBtn in attackButtons)
+        {
+            Destroy(atkBtn);
+        }
+        attackButtons.Clear();
     }
 
     void CreateAttackButtons()
