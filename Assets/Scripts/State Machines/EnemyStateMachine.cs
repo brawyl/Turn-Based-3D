@@ -73,12 +73,20 @@ public class EnemyStateMachine : MonoBehaviour
                     battleSM.enemiesInBattle.Remove(this.gameObject);
                     //disable the selector
                     selector.SetActive(false);
+
                     //remove all inputs by this enemy
-                    for (int i=0; i<battleSM.performList.Count; i++)
+                    if (this.battleSM.enemiesInBattle.Count > 0)
                     {
-                        if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                        for (int i = 0; i < battleSM.performList.Count; i++)
                         {
-                            battleSM.performList.Remove(battleSM.performList[i]);
+                            if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                            {
+                                battleSM.performList.Remove(battleSM.performList[i]);
+                            }
+                            if (battleSM.performList[i].targetGameObject == this.gameObject)
+                            {
+                                battleSM.performList[i].targetGameObject = battleSM.enemiesInBattle[Random.Range(0, this.battleSM.enemiesInBattle.Count)];
+                            }
                         }
                     }
                     //change the color to gray / play dead animation

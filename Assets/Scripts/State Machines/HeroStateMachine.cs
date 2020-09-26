@@ -94,12 +94,20 @@ public class HeroStateMachine : MonoBehaviour
                     battleSM.actionPanel.SetActive(false);
                     battleSM.targetSelectPanel.SetActive(false);
 
-                    //remove item from performList
-                    for (int i=0; i<battleSM.performList.Count; i++)
+                    if (battleSM.heroesInBattle.Count > 0)
                     {
-                        if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                        //remove item from performList
+                        for (int i = 0; i < battleSM.performList.Count; i++)
                         {
-                            battleSM.performList.Remove(battleSM.performList[i]);
+                            if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                            {
+                                battleSM.performList.Remove(battleSM.performList[i]);
+                            }
+
+                            if (battleSM.performList[i].targetGameObject == this.gameObject)
+                            {
+                                battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
+                            }
                         }
                     }
 
