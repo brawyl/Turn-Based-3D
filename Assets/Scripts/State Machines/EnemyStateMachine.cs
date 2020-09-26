@@ -29,6 +29,9 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject actionTarget;
     private float animSpeed = 10f;
 
+    //alive
+    private bool alive = true;
+
     void Start()
     {
         selector.SetActive(false);
@@ -58,7 +61,36 @@ public class EnemyStateMachine : MonoBehaviour
                 StartCoroutine(TimeForAction());
                 break;
             case TurnState.DEAD:
+                if (!alive)
+                {
+                    return;
+                }
+                else
+                {
+                    //change tag of enemy
+                    this.gameObject.tag = "DeadEnemy";
+                    //not attackable by heroes
+                    battleSM.enemiesInBattle.Remove(this.gameObject);
+                    //disable the selector
+                    selector.SetActive(false);
+                    //remove all inputs by this enemy
+                    for (int i=0; i<battleSM.performList.Count; i++)
+                    {
+                        if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                        {
+                            battleSM.performList.Remove(battleSM.performList[i]);
+                        }
+                    }
+                    //change the color to gray / play dead animation
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    //set alive to be false
+                    alive = false;
+                    //reste enemy buttons
+                    battleSM.EnemyButtons();
+                    //check alive
+                    battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
 
+                }
                 break;
         }
     }

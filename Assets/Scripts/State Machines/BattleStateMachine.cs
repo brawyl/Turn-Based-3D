@@ -43,12 +43,15 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject targetSelectPanel;
     public GameObject magicPanel;
 
-    //magic attack
+    //magic attacks
     public Transform actionSpacer;
     public Transform magicSpacer;
     public GameObject actionButton;
     public GameObject magicActionButton;
     private List<GameObject> attackButtons = new List<GameObject>();
+
+    //enemy attacks
+    private List<GameObject> enemyBtns = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -127,11 +130,15 @@ public class BattleStateMachine : MonoBehaviour
                 break;
 
             case PerformAction.WIN:
-                
+                Debug.Log("You win");
+                for (int i = 0; i < heroesInBattle.Count; i++)
+                {
+                    heroesInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
+                }
                 break;
 
             case PerformAction.LOSE:
-                
+                Debug.Log("You lose");
                 break;
         }
 
@@ -165,8 +172,15 @@ public class BattleStateMachine : MonoBehaviour
         performList.Add(action);
     }
 
-    void EnemyButtons()
+    public void EnemyButtons()
     {
+        //cleanup
+        foreach(GameObject enemyBtn in enemyBtns)
+        {
+            Destroy(enemyBtn);
+        }
+        enemyBtns.Clear();
+        //create buttons
         foreach(GameObject enemy in enemiesInBattle)
         {
             GameObject newButton = Instantiate(enemyButton) as GameObject;
@@ -180,6 +194,7 @@ public class BattleStateMachine : MonoBehaviour
             button.enemyPrefab = enemy;
 
             newButton.transform.SetParent(spacer, false);
+            enemyBtns.Add(newButton);
         }
     }
 
