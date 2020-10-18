@@ -7,6 +7,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    //class random monster
+    [System.Serializable]
+    public class RegionData
+    {
+        public string regionName;
+        public int maxAmountEnemies = 4;
+        public string battleScene;
+        public List<GameObject> possibleEnemies = new List<GameObject>();
+    }
+
+    public int currRegion;
+
+    public List<RegionData> regions = new List<RegionData>();
+
     //hero
     public GameObject heroCharacter;
 
@@ -17,6 +31,26 @@ public class GameManager : MonoBehaviour
     //scenes
     public string sceneToLoad;
     public string lastScene; //for battles
+
+    //bools
+    public bool isWalking = false;
+    public bool canGetEncounter = false;
+    public bool gotAttacked = false;
+
+    //enum
+    public enum GameStates
+    {
+        WORLD_STATE,
+        TOWN_STATE,
+        BATTLE_STATE,
+        IDLE
+    }
+
+    //battle
+    public List<GameObject> enemiesToBattle = new List<GameObject>();
+    public int enemyAmount;
+
+    public GameStates gameState;
 
     void Awake()
     {
@@ -42,8 +76,82 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        switch (gameState)
+        {
+            case (GameStates.WORLD_STATE):
+                if (isWalking)
+                {
+                    RandomEncounter();
+                }
+                if (gotAttacked)
+                {
+                    gameState = GameStates.BATTLE_STATE;
+                }
+                break;
+
+            case (GameStates.TOWN_STATE):
+
+                break;
+
+            case (GameStates.BATTLE_STATE):
+                //load battle scene
+                StartBattle();
+                //go to idle
+                gameState = GameStates.IDLE;
+                break;
+
+            case (GameStates.IDLE):
+
+                break;
+        }
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void LoadSceneAfterBattle()
+    {
+        SceneManager.LoadScene(lastScene);
+    }
+
+    void RandomEncounter()
+    {
+        if (isWalking && canGetEncounter)
+        {
+            if (Random.Range(0,1000) < 10)
+            {
+                //Debug.Log("Got Attacked");
+                gotAttacked = true;
+            }
+        }
+    }
+
+    void StartBattle()
+    {
+        //amount of enemies to encounter
+        enemyAmount = Random.Range(1, regions[currRegion].maxAmountEnemies+1);
+
+        //which enemies to battle
+        for (int i=0; i<enemyAmount; i++)
+        {
+            enemiesToBattle.Add(regions[currRegion].possibleEnemies[Random.Range(0, regions[currRegion].possibleEnemies.Count)]);
+        }
+
+        //hero data
+        lastHeroPosition = GameObject.Find("HeroCharacter").gameObject.transform.position;
+        nextHeroPosition = lastHeroPosition;
+        lastScene = SceneManager.GetActiveScene().name;
+
+        //load level
+        SceneManager.LoadScene(regions[currRegion].battleScene);
+
+        //reset hero
+        isWalking = false;
+        gotAttacked = false;
+        canGetEncounter = false;
     }
 }

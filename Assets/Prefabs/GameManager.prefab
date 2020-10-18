@@ -43,4 +43,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41630ed71b24e4fdcbe851ea91420104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currRegion: 0
+  regions:
+  - regionName: region1
+    maxAmountEnemies: 4
+    battleScene: BattleScene
+    possibleEnemies:
+    - {fileID: 1697025168545911353, guid: a8934246d11714db0ba942c8d93afee0, type: 3}
+  - regionName: region2
+    maxAmountEnemies: 4
+    battleScene: BattleScene
+    possibleEnemies:
+    - {fileID: 1697025168545911353, guid: a8934246d11714db0ba942c8d93afee0, type: 3}
+    - {fileID: 5808183611457674160, guid: 65b3ba056cc5c49ab8879ebfb7d160e7, type: 3}
   heroCharacter: {fileID: 81865179032787900, guid: f5513e099cb6b475b86416ae9bf93701, type: 3}
+  nextHeroPosition: {x: 0, y: 0, z: 0}
+  lastHeroPosition: {x: 0, y: 0, z: 0}
+  sceneToLoad: 
+  lastScene: 
+  isWalking: 0
+  canGetEncounter: 0
+  gotAttacked: 0
+  enemiesToBattle: []
+  enemyAmount: 0
+  gameState: 0
