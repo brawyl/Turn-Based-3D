@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public List<RegionData> regions = new List<RegionData>();
 
+    //spawn points
+    public string nextSpawnPoint;
+
     //hero
     public GameObject heroCharacter;
 

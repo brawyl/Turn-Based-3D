@@ -11,7 +11,18 @@ public class HeroMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = GameManager.instance.nextHeroPosition;
+        if (GameManager.instance.nextSpawnPoint != "")
+        {
+            GameObject spawnPoint = GameObject.Find(GameManager.instance.nextSpawnPoint);
+            transform.position = spawnPoint.transform.position;
+
+            GameManager.instance.nextSpawnPoint = "";
+        }
+        else if (GameManager.instance.lastHeroPosition != Vector3.zero)
+        {
+            transform.position = GameManager.instance.lastHeroPosition;
+            GameManager.instance.lastHeroPosition = Vector3.zero;
+        }
     }
 
     void FixedUpdate()
@@ -38,18 +49,11 @@ public class HeroMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "EnterTown")
-        {
-            CollisionHandler collisionHandler = other.gameObject.GetComponent<CollisionHandler>();
-            GameManager.instance.nextHeroPosition = collisionHandler.spawnPoint.transform.position;
-            GameManager.instance.sceneToLoad = collisionHandler.sceneToLoad;
-            GameManager.instance.LoadNextScene();
-        }
 
-        if (other.tag == "LeaveTown")
+        if (other.tag == "Teleporter")
         {
             CollisionHandler collisionHandler = other.gameObject.GetComponent<CollisionHandler>();
-            GameManager.instance.nextHeroPosition = collisionHandler.spawnPoint.transform.position;
+            GameManager.instance.nextSpawnPoint = collisionHandler.spawnPointName;
             GameManager.instance.sceneToLoad = collisionHandler.sceneToLoad;
             GameManager.instance.LoadNextScene();
         }

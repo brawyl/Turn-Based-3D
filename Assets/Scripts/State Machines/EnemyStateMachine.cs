@@ -79,13 +79,16 @@ public class EnemyStateMachine : MonoBehaviour
                     {
                         for (int i = 0; i < battleSM.performList.Count; i++)
                         {
-                            if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                            if (i > 0)
                             {
-                                battleSM.performList.Remove(battleSM.performList[i]);
-                            }
-                            if (battleSM.performList[i].targetGameObject == this.gameObject)
-                            {
-                                battleSM.performList[i].targetGameObject = battleSM.enemiesInBattle[Random.Range(0, this.battleSM.enemiesInBattle.Count)];
+                                if (battleSM.performList[i].attackerGameObject == this.gameObject)
+                                {
+                                    battleSM.performList.Remove(battleSM.performList[i]);
+                                }
+                                if (battleSM.performList[i].targetGameObject == this.gameObject)
+                                {
+                                    battleSM.performList[i].targetGameObject = battleSM.enemiesInBattle[Random.Range(0, this.battleSM.enemiesInBattle.Count)];
+                                }
                             }
                         }
                     }
