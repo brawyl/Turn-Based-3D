@@ -58,20 +58,16 @@ public class HeroMovement : MonoBehaviour
             GameManager.instance.LoadNextScene();
         }
 
-        if (other.tag == "region1")
+        if (other.tag == "EncounterZone")
         {
-            GameManager.instance.currRegion = 0;
-        }
-
-        if (other.tag == "region2")
-        {
-            GameManager.instance.currRegion = 1;
+            RegionData region = other.gameObject.GetComponent<RegionData>();
+            GameManager.instance.currRegion = region;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "region1" || other.tag == "region2")
+        if (other.tag == "EncounterZone")
         {
             GameManager.instance.canGetEncounter = true;
         }
@@ -79,7 +75,7 @@ public class HeroMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "region1" || other.tag == "region2")
+        if (other.tag == "EncounterZone")
         {
             GameManager.instance.canGetEncounter = false;
         }

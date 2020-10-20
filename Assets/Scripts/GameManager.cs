@@ -7,19 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    //class random monster
-    [System.Serializable]
-    public class RegionData
-    {
-        public string regionName;
-        public int maxAmountEnemies = 4;
-        public string battleScene;
-        public List<GameObject> possibleEnemies = new List<GameObject>();
-    }
-
-    public int currRegion;
-
-    public List<RegionData> regions = new List<RegionData>();
+    public RegionData currRegion;
 
     //spawn points
     public string nextSpawnPoint;
@@ -136,12 +124,12 @@ public class GameManager : MonoBehaviour
     void StartBattle()
     {
         //amount of enemies to encounter
-        enemyAmount = Random.Range(1, regions[currRegion].maxAmountEnemies+1);
+        enemyAmount = Random.Range(1, currRegion.maxAmountEnemies+1);
 
         //which enemies to battle
         for (int i=0; i<enemyAmount; i++)
         {
-            enemiesToBattle.Add(regions[currRegion].possibleEnemies[Random.Range(0, regions[currRegion].possibleEnemies.Count)]);
+            enemiesToBattle.Add(currRegion.possibleEnemies[Random.Range(0, currRegion.possibleEnemies.Count)]);
         }
 
         //hero data
@@ -150,7 +138,7 @@ public class GameManager : MonoBehaviour
         lastScene = SceneManager.GetActiveScene().name;
 
         //load level
-        SceneManager.LoadScene(regions[currRegion].battleScene);
+        SceneManager.LoadScene(currRegion.battleScene);
 
         //reset hero
         isWalking = false;
