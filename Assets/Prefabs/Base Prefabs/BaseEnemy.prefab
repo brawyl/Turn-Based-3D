@@ -110,15 +110,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy:
-    theName: Enemy 1
-    baseHP: 30
-    currHP: 30
+    theName: Enemy
+    baseHP: 100
+    currHP: 100
     baseMP: 20
     currMP: 20
     baseATK: 5
     currATK: 5
     baseDEF: 2
     currDEF: 2
+    attacks:
+    - {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
+    - {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
     enemyType: 0
     rarity: 0
     stamina: 2

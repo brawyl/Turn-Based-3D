@@ -125,3 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499a5f0e11b24485fb40a3b72955c64f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currPosition: {x: 0, y: 0, z: 0}
+  lastPosition: {x: 0, y: 0, z: 0}

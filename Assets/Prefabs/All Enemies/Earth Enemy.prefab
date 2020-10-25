@@ -8,21 +8,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
-      propertyPath: enemy.attacks.Array.size
+      propertyPath: enemy.theName
+      value: Earth Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: enemy.enemyType
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
-      propertyPath: enemy.attacks.Array.data[0]
-      value: 
-      objectReference: {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
-    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
-      propertyPath: enemy.attacks.Array.data[1]
-      value: 
-      objectReference: {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
     - target: {fileID: 7722951089461900587, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_Name
-      value: Enemy 1
+      value: Earth Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900589, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 96c83ee58287a42408a24a1e77135c4e, type: 2}
     - target: {fileID: 7722951089461900591, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900591, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900591, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_LocalRotation.x

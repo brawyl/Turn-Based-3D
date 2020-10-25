@@ -6,7 +6,7 @@ public class HeroMovement : MonoBehaviour
 {
     float moveSpeed = 10f;
 
-    Vector3 currPosition, lastPosition;
+    public Vector3 currPosition, lastPosition;
 
     // Start is called before the first frame update
     void Start()

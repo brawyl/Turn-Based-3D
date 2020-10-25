@@ -96,7 +96,7 @@ public class EnemyStateMachine : MonoBehaviour
                     this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
                     //set alive to be false
                     alive = false;
-                    //reste enemy buttons
+                    //reset enemy buttons
                     battleSM.EnemyButtons();
                     //check alive
                     battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
