@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8a29d3551adb4d42a673aa3536245e3, type: 2}
+  - {fileID: 2100000, guid: b73608fe752ad4c4896c4d22907127ca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,14 +119,16 @@ MonoBehaviour:
     currATK: 5
     baseDEF: 2
     currDEF: 2
+    attacks: []
     stamina: 3
     intellect: 3
     dexterity: 3
     agility: 3
+    MagicAttacks: []
   currentState: 0
-  ProgressBar: {fileID: 0}
   selector: {fileID: 87452904994607392}
   actionTarget: {fileID: 0}
+  heroPanel: {fileID: 0}
 --- !u!1001 &5340632078023795723
 PrefabInstance:
   m_ObjectHideFlags: 0

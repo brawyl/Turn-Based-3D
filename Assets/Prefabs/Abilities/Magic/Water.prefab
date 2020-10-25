@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3130c82f5ce5e4a2aa5f61cb6e4d80f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackName: Water
+  attackName: WATER
   attackDescription: Basic Water spell which drills into the target.
   attackDamage: 20
   attackCost: 5

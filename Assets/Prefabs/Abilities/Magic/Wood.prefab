@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b6cf226259d43a2a39eca4f453576a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackName: Wood
+  attackName: WOOD
   attackDescription: Basic Wood spell which smash into the target.
   attackDamage: 20
   attackCost: 5

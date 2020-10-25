@@ -1404,10 +1404,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87452904994607392, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162631, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_Name
       value: Hero 3
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162633, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b73608fe752ad4c4896c4d22907127ca, type: 2}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.MagicAttacks.Array.size
       value: 5
@@ -1418,7 +1426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Hero 2
+      value: Bluetoven
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: ProgressBar
@@ -1702,10 +1710,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87452904994607392, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162631, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_Name
       value: Hero 2
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162633, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dfccf0b9bea1847fb86aa09f7914b9b7, type: 2}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.MagicAttacks.Array.size
       value: 5
@@ -1716,7 +1732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Hero 2
+      value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: ProgressBar
@@ -1944,10 +1960,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 87452904994607392, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162631, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_Name
       value: Hero 1
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162633, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: eeda6fa5112304e969a7c357bb6727e3, type: 2}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.attacks.Array.size
       value: 1
@@ -1962,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Hero 1
+      value: Redwig
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.baseHP

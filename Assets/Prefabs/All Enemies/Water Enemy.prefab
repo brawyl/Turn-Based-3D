@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: enemy.theName
-      value: Water Enemy
+      value: WATER CUBE
       objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: enemy.baseHP

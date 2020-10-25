@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d52194efd09461290d8e59d1188dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackName: Earth
+  attackName: EARTH
   attackDescription: Basic Earth spell which splits the ground beneath the target.
   attackDamage: 20
   attackCost: 5

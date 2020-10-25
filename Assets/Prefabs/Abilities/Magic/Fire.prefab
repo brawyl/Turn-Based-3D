@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9049edef4012c48be9c051dda07684e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackName: Fire
+  attackName: FIRE
   attackDescription: Basic Fire spell which burns the target.
   attackDamage: 20
   attackCost: 5

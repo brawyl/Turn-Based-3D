@@ -261,14 +261,14 @@ public class BattleStateMachine : MonoBehaviour
     {
         GameObject attackButton = Instantiate(actionButton) as GameObject;
         Text attackButtonText = attackButton.transform.Find("Text").gameObject.GetComponent<Text>();
-        attackButtonText.text = "Attack";
+        attackButtonText.text = "ATTACK";
         attackButton.GetComponent<Button>().onClick.AddListener( () => InputAction() );
         attackButton.transform.SetParent(actionSpacer, false);
         attackButtons.Add(attackButton);
 
         GameObject magicButton = Instantiate(actionButton) as GameObject;
         Text magicButtonText = magicButton.transform.Find("Text").gameObject.GetComponent<Text>();
-        magicButtonText.text = "Magic";
+        magicButtonText.text = "MAGIC";
         magicButton.GetComponent<Button>().onClick.AddListener(() => InputMagicAction());
         magicButton.transform.SetParent(actionSpacer, false);
         attackButtons.Add(magicButton);
