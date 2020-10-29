@@ -935,13 +935,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.35187596, y: -0, z: -0, w: 0.93604666}
-  m_LocalPosition: {x: 0, y: 3.81, z: -6.66}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
+  m_LocalPosition: {x: 0, y: 6, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 41.204, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!1 &1083838423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Bluetoven
+      value: blue
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: ProgressBar
@@ -1732,7 +1732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Green
+      value: green
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: ProgressBar
@@ -1986,7 +1986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.theName
-      value: Redwig
+      value: red
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.baseHP

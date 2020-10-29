@@ -24,6 +24,7 @@ public class HeroStateMachine : MonoBehaviour
     private float maxCooldown = 5f;
     private Image progressBar;
     private Image healthBar;
+    private Image profileImage;
     public GameObject selector;
     //IEnumerator
     public GameObject actionTarget;
@@ -215,6 +216,9 @@ public class HeroStateMachine : MonoBehaviour
         float calcHealth = hero.currHP / hero.baseHP;
         healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 
+        profileImage = stats.profileImage;
+        string heroImage = "profile_" + hero.theName;
+        profileImage.sprite = Resources.Load<Sprite>(heroImage);
         heroPanel.transform.SetParent(heroPanelSpacer, false);
     }
 
