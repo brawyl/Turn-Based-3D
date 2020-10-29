@@ -23,6 +23,7 @@ public class HeroStateMachine : MonoBehaviour
     private float currCooldown = 0f;
     private float maxCooldown = 5f;
     private Image progressBar;
+    private Image healthBar;
     public GameObject selector;
     //IEnumerator
     public GameObject actionTarget;
@@ -208,15 +209,19 @@ public class HeroStateMachine : MonoBehaviour
         stats = heroPanel.GetComponent<HeroPanelStats>();
         stats.heroName.text = hero.theName;
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
-        stats.heroMP.text = "MP: " + hero.currMP + "/" + hero.baseMP;
-
+        
         progressBar = stats.progressBar;
+        healthBar = stats.healthBar;
+        float calcHealth = hero.currHP / hero.baseHP;
+        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+
         heroPanel.transform.SetParent(heroPanelSpacer, false);
     }
 
     void UpdateHeroPanel()
     {
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
-        stats.heroMP.text = "MP: " + hero.currMP + "/" + hero.baseMP;
+        float calcHealth = hero.currHP / hero.baseHP;
+        healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
     }
 }
