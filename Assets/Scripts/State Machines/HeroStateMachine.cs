@@ -26,6 +26,8 @@ public class HeroStateMachine : MonoBehaviour
     private Image healthBar;
     private Image profileImage;
     public GameObject selector;
+    public GameObject damageText;
+
     //IEnumerator
     public GameObject actionTarget;
     private bool actionStarted = false;
@@ -50,6 +52,7 @@ public class HeroStateMachine : MonoBehaviour
         //can use speed stat instead of 2.5f
         currCooldown = Random.Range(0, 2.5f);
         selector.SetActive(false);
+        damageText.SetActive(false);
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         currentState = TurnState.PROCESSING;
     }
@@ -189,6 +192,10 @@ public class HeroStateMachine : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        damageText.GetComponent<TextMesh>().text = damageAmount.ToString();
+        damageText.SetActive(true);
+        StartCoroutine(HideDamageText());
+
         hero.currHP -= damageAmount;
         if (hero.currHP <= 0)
         {
@@ -227,5 +234,12 @@ public class HeroStateMachine : MonoBehaviour
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
         float calcHealth = hero.currHP / hero.baseHP;
         healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
+
+    IEnumerator HideDamageText()
+    {
+        yield return new WaitForSeconds(1);
+
+        damageText.SetActive(false);
     }
 }

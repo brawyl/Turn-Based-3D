@@ -1960,78 +1960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 87452904994607392, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162631, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_Name
       value: Hero 1
       objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162633, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: eeda6fa5112304e969a7c357bb6727e3, type: 2}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.attacks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: ProgressBar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.theName
-      value: red
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.baseHP
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.currHP
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: heroPanel
-      value: 
-      objectReference: {fileID: 5133541727440835485, guid: 4e88f57b2a34b4450a056c2c67bc8bac, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.data[0]
-      value: 
-      objectReference: {fileID: 7798711114725906484, guid: 02a05a1e18d8c4563a3dd4ee5b6db268, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.attacks.Array.data[0]
-      value: 
-      objectReference: {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.baseMP
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.currMP
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.data[1]
-      value: 
-      objectReference: {fileID: 4325781690974704434, guid: 011b265500c844beaba9ad5e539c8079, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.data[2]
-      value: 
-      objectReference: {fileID: -7356216979676929170, guid: f0415723d4ce748328e9ec7feeb2fc2b, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.data[3]
-      value: 
-      objectReference: {fileID: -8267404212696618961, guid: d4e0d54e7b02d42898dedafa061a544b, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.MagicAttacks.Array.data[4]
-      value: 
-      objectReference: {fileID: 3802491628812615738, guid: a0ab5d78c3e8447ccbaaf87dd2e23878, type: 3}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
