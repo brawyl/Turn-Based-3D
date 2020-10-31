@@ -59,74 +59,69 @@ public class HeroStateMachine : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(currentState);
-
         switch (currentState)
         {
             case TurnState.PROCESSING:
+                if (!alive) { return; }
                 UpdateProgressBar();
                 break;
+
             case TurnState.ADDTOLIST:
+                if (!alive) { return; }
                 battleSM.heroesToManage.Add(this.gameObject);
                 currentState = TurnState.WAITING;
                 break;
+
             case TurnState.WAITING:
                 //idle
                 break;
+
             case TurnState.ACTION:
+                if (!alive) { return; }
                 StartCoroutine(TimeForAction());
                 break;
+
             case TurnState.DEAD:
-                if (!alive)
+                if (!alive) { return; }
+
+                //change tag to dead
+                this.gameObject.tag = "DeadHero";
+                //cannot be targeted
+                battleSM.heroesInBattle.Remove(this.gameObject);
+                //disable the selector
+                selector.SetActive(false);
+
+                //reset GUI
+                battleSM.actionPanel.SetActive(false);
+                battleSM.targetSelectPanel.SetActive(false);
+
+                if (battleSM.heroesInBattle.Count > 0)
                 {
-                    return;
-                }
-                else
-                {
-                    //change tag of hero
-                    this.gameObject.tag = "DeadHero";
-
-                    //not targetable
-                    battleSM.heroesInBattle.Remove(this.gameObject);
-
-                    //not managable
-                    battleSM.heroesInBattle.Remove(this.gameObject);
-
-                    //deactivate the selector
-                    selector.SetActive(false);
-
-                    //reset GUI
-                    battleSM.actionPanel.SetActive(false);
-                    battleSM.targetSelectPanel.SetActive(false);
-
-                    if (battleSM.heroesInBattle.Count > 0)
+                    for (int i = 0; i < battleSM.performList.Count; i++)
                     {
-                        //remove item from performList
-                        for (int i = 0; i < battleSM.performList.Count; i++)
+                        if (i > 0)
                         {
-                            if (i > 0)
+                            if (battleSM.performList[i].attackerGameObject == this.gameObject)
                             {
-                                if (battleSM.performList[i].attackerGameObject == this.gameObject)
-                                {
-                                    battleSM.performList.Remove(battleSM.performList[i]);
-                                }
-
-                                if (battleSM.performList[i].targetGameObject == this.gameObject)
-                                {
-                                    battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
-                                }
+                                battleSM.performList.Remove(battleSM.performList[i]);
+                            }
+                            if (battleSM.performList[i].targetGameObject == this.gameObject)
+                            {
+                                battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
                             }
                         }
                     }
-
-                    //change color / play death animation
-                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
-
-                    //reset heroInput
-                    battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
-
-                    alive = false;
                 }
+
+                //change color / play death animation
+                this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(150, 150, 150, 255);
+
+                battleSM.heroInput = BattleStateMachine.HeroGUI.DONE;
+
+                //reset heroInput
+                battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
+
+                alive = false;
                 break;
         }
     }

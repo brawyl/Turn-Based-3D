@@ -69,9 +69,9 @@ public class EnemyStateMachine : MonoBehaviour
                 }
                 else
                 {
-                    //change tag of enemy
+                    //change tag to dead
                     this.gameObject.tag = "DeadEnemy";
-                    //not attackable by heroes
+                    //cannot be targeted
                     battleSM.enemiesInBattle.Remove(this.gameObject);
                     //disable the selector
                     selector.SetActive(false);
@@ -95,7 +95,7 @@ public class EnemyStateMachine : MonoBehaviour
                         }
                     }
                     //change the color to gray / play dead animation
-                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(105, 105, 105, 255);
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(150, 150, 150, 255);
                     //set alive to be false
                     alive = false;
                     //reset enemy buttons
