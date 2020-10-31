@@ -109,6 +109,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(lastScene);
     }
 
+    public void LoadSceneAfterLoss()
+    {
+        SceneManager.LoadScene("TownScene");
+    }
+
     void RandomEncounter()
     {
         if (isWalking && canGetEncounter)

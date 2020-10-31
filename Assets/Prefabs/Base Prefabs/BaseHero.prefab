@@ -112,12 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero:
     theName: red
-    baseHP: 1000
-    currHP: 1000
-    baseMP: 150
-    currMP: 150
-    baseATK: 5
-    currATK: 5
+    baseHP: 100
+    currHP: 100
+    baseATK: 25
+    currATK: 25
     baseDEF: 2
     currDEF: 2
     attacks:

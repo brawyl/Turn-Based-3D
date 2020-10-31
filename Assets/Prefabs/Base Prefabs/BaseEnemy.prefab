@@ -114,10 +114,8 @@ MonoBehaviour:
     theName: Enemy
     baseHP: 100
     currHP: 100
-    baseMP: 20
-    currMP: 20
-    baseATK: 5
-    currATK: 5
+    baseATK: 10
+    currATK: 10
     baseDEF: 2
     currDEF: 2
     attacks:

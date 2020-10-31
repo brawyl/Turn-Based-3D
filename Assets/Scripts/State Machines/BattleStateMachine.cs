@@ -42,6 +42,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject actionPanel;
     public GameObject targetSelectPanel;
     public GameObject magicPanel;
+    public GameObject resultText;
 
     //magic attacks
     public Transform actionSpacer;
@@ -143,19 +144,22 @@ public class BattleStateMachine : MonoBehaviour
                 break;
 
             case PerformAction.WIN:
-                Debug.Log("You win");
                 for (int i = 0; i < heroesInBattle.Count; i++)
                 {
                     heroesInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
                 }
 
-                GameManager.instance.LoadSceneAfterBattle();
-                GameManager.instance.gameState = GameManager.GameStates.WORLD_STATE;
-                GameManager.instance.enemiesToBattle.Clear();
+                resultText.GetComponent<Text>().text = "YOU WIN";
+                resultText.SetActive(true);
+
+                StartCoroutine(WinBattle());
                 break;
 
             case PerformAction.LOSE:
-                Debug.Log("You lose");
+                resultText.GetComponent<Text>().text = "YOU LOSE";
+                resultText.SetActive(true);
+
+                StartCoroutine(LoseBattle());
                 break;
         }
 
@@ -308,5 +312,27 @@ public class BattleStateMachine : MonoBehaviour
         heroChoice.chosenAttack = chosenMagic;
         magicPanel.SetActive(false);
         targetSelectPanel.SetActive(true);
+    }
+
+    IEnumerator WinBattle()
+    {
+        yield return new WaitForSeconds(2);
+
+        resultText.SetActive(false);
+
+        GameManager.instance.LoadSceneAfterBattle();
+        GameManager.instance.gameState = GameManager.GameStates.WORLD_STATE;
+        GameManager.instance.enemiesToBattle.Clear();
+    }
+
+    IEnumerator LoseBattle()
+    {
+        yield return new WaitForSeconds(2);
+
+        resultText.SetActive(false);
+
+        GameManager.instance.LoadSceneAfterLoss();
+        GameManager.instance.gameState = GameManager.GameStates.TOWN_STATE;
+        GameManager.instance.enemiesToBattle.Clear();
     }
 }
