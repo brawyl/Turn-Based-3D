@@ -42,7 +42,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject actionPanel;
     public GameObject targetSelectPanel;
     public GameObject magicPanel;
-    public GameObject resultText;
+    public GameObject resultScreen;
 
     //magic attacks
     public Transform actionSpacer;
@@ -59,12 +59,33 @@ public class BattleStateMachine : MonoBehaviour
 
     void Awake()
     {
+        List<string> enemyNames = new List<string>();
+        string[] enemyLetters = { " A", " B", " C", " D" };
         for (int i=0; i<GameManager.instance.enemyAmount; i++)
         {
             GameObject newEnemy = Instantiate(GameManager.instance.enemiesToBattle[i], spawnPoints[i].position, Quaternion.identity) as GameObject;
-            newEnemy.name = newEnemy.GetComponent<EnemyStateMachine>().enemy.theName;
+            string enemyName = newEnemy.GetComponent<EnemyStateMachine>().enemy.theName;
+
+            //rename duplicate enemy names
+            if (enemyNames.IndexOf(enemyName) > -1)
+            {
+                int letterIndex = 0;
+                for (int j = 0; j < i; j++)
+                {
+                    if (enemyNames[j].Contains(enemyName))
+                    {
+                        enemiesInBattle[j].name = enemyName + enemyLetters[letterIndex];
+                        enemiesInBattle[j].GetComponent<EnemyStateMachine>().enemy.theName = enemyName + enemyLetters[letterIndex];
+                        letterIndex++;
+                    }
+                }
+                enemyName = enemyName + enemyLetters[letterIndex];
+            }
+
+            newEnemy.name = enemyName;
             newEnemy.GetComponent<EnemyStateMachine>().enemy.theName = newEnemy.name;
             enemiesInBattle.Add(newEnemy);
+            enemyNames.Add(enemyName);
         }
     }
 
@@ -149,15 +170,15 @@ public class BattleStateMachine : MonoBehaviour
                     heroesInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
                 }
 
-                resultText.GetComponent<Text>().text = "YOU WIN";
-                resultText.SetActive(true);
+                resultScreen.GetComponentInChildren<Text>().text = "YOU WIN";
+                resultScreen.SetActive(true);
 
                 StartCoroutine(WinBattle());
                 break;
 
             case PerformAction.LOSE:
-                resultText.GetComponent<Text>().text = "YOU LOSE";
-                resultText.SetActive(true);
+                resultScreen.GetComponentInChildren<Text>().text = "YOU LOSE";
+                resultScreen.SetActive(true);
 
                 StartCoroutine(LoseBattle());
                 break;
@@ -318,7 +339,7 @@ public class BattleStateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        resultText.SetActive(false);
+        resultScreen.SetActive(false);
 
         GameManager.instance.LoadSceneAfterBattle();
         GameManager.instance.gameState = GameManager.GameStates.WORLD_STATE;
@@ -329,7 +350,7 @@ public class BattleStateMachine : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        resultText.SetActive(false);
+        resultScreen.SetActive(false);
 
         GameManager.instance.LoadSceneAfterLoss();
         GameManager.instance.gameState = GameManager.GameStates.TOWN_STATE;

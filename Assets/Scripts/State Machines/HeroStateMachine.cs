@@ -62,12 +62,10 @@ public class HeroStateMachine : MonoBehaviour
         switch (currentState)
         {
             case TurnState.PROCESSING:
-                if (!alive) { return; }
                 UpdateProgressBar();
                 break;
 
             case TurnState.ADDTOLIST:
-                if (!alive) { return; }
                 battleSM.heroesToManage.Add(this.gameObject);
                 currentState = TurnState.WAITING;
                 break;
@@ -77,7 +75,6 @@ public class HeroStateMachine : MonoBehaviour
                 break;
 
             case TurnState.ACTION:
-                if (!alive) { return; }
                 StartCoroutine(TimeForAction());
                 break;
 
@@ -99,16 +96,13 @@ public class HeroStateMachine : MonoBehaviour
                 {
                     for (int i = 0; i < battleSM.performList.Count; i++)
                     {
-                        if (i > 0)
+                        if (battleSM.performList[i].attackerGameObject == this.gameObject)
                         {
-                            if (battleSM.performList[i].attackerGameObject == this.gameObject)
-                            {
-                                battleSM.performList.Remove(battleSM.performList[i]);
-                            }
-                            if (battleSM.performList[i].targetGameObject == this.gameObject)
-                            {
-                                battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
-                            }
+                            battleSM.performList.Remove(battleSM.performList[i]);
+                        }
+                        if (battleSM.performList[i].targetGameObject == this.gameObject)
+                        {
+                            battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
                         }
                     }
                 }
