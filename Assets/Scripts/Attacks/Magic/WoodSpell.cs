@@ -8,7 +8,7 @@ public class WoodSpell : BaseAttack
     {
         attackName = "Wood";
         attackDescription = "Basic Wood spell which smashes into the target.";
-        attackDamage = 5f;
+        attackDamage = 20f;
         attackCost = 5f;
     }
 }

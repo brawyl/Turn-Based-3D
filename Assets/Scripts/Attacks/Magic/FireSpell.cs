@@ -9,6 +9,6 @@ public class FireSpell : BaseAttack
         attackName = "Fire";
         attackDescription = "Basic Fire spell which burns the target.";
         attackDamage = 20f;
-        attackCost = 10f;
+        attackCost = 5f;
     }
 }

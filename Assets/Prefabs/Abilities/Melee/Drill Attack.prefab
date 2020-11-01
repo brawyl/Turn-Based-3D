@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8621390105056680357
+--- !u!1 &4292966724360831579
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3782754370385560340}
-  - component: {fileID: 774606816181449096}
+  - component: {fileID: 3419404466726065574}
+  - component: {fileID: 4634748616572446276}
   m_Layer: 0
-  m_Name: Slash Ability
+  m_Name: Drill Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3782754370385560340
+--- !u!4 &3419404466726065574
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8621390105056680357}
+  m_GameObject: {fileID: 4292966724360831579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,19 +31,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &774606816181449096
+--- !u!114 &4634748616572446276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8621390105056680357}
+  m_GameObject: {fileID: 4292966724360831579}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a911122ca2bf4236a67a66299e694b8, type: 3}
+  m_Script: {fileID: 11500000, guid: b8d048f24fc0a4cdf9092fca4b5056ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackName: Slash
-  attackDescription: A quick slashing attack with a bladed weapon.
+  attackName: Drill
+  attackDescription: Drill forward horizontally into the target like a geyser.
   attackDamage: 10
   attackCost: 0

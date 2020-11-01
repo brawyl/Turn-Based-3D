@@ -35,6 +35,7 @@ public class HeroStateMachine : MonoBehaviour
     private float animSpeed = 10f;
 
     private bool alive = true;
+    private bool regen = true;
     //hero panel
     private HeroPanelStats stats;
     public GameObject heroPanel;
@@ -73,10 +74,15 @@ public class HeroStateMachine : MonoBehaviour
 
             case TurnState.WAITING:
                 //idle
+                if (regen)
+                {
+                    HealDamage(hero.currREGEN);
+                }
                 break;
 
             case TurnState.ACTION:
                 StartCoroutine(TimeForAction());
+                regen = true;
                 break;
 
             case TurnState.DEAD:
@@ -198,10 +204,25 @@ public class HeroStateMachine : MonoBehaviour
         UpdateHeroPanel();
     }
 
+    public void HealDamage(float damageAmount)
+    {
+        hero.currHP += damageAmount;
+        if (hero.currHP > hero.baseHP)
+        {
+            hero.currHP = hero.baseHP;
+        }
+        regen = false;
+        UpdateHeroPanel();
+    }
+
     void DoDamage()
     {
         float calculatedDamage = hero.currATK + battleSM.performList[0].chosenAttack.attackDamage;
         actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage);
+        if (battleSM.performList[0].chosenAttack.attackCost > 0)
+        {
+            TakeDamage(battleSM.performList[0].chosenAttack.attackCost);
+        }
     }
 
     void CreateHeroPanel()

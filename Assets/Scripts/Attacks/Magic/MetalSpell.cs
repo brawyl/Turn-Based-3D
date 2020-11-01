@@ -8,7 +8,7 @@ public class MetalSpell : BaseAttack
     {
         attackName = "Metal";
         attackDescription = "Basic Metal spell which cuts into the target.";
-        attackDamage = 5f;
+        attackDamage = 20f;
         attackCost = 5f;
     }
 }

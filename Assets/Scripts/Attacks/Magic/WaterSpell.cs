@@ -8,7 +8,7 @@ public class WaterSpell : BaseAttack
     {
         attackName = "Water";
         attackDescription = "Basic Water spell which drills into the target.";
-        attackDamage = 5f;
+        attackDamage = 20f;
         attackCost = 5f;
     }
 }

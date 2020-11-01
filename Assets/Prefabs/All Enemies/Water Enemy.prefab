@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: enemy.attacks.Array.data[0]
       value: 
-      objectReference: {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
+      objectReference: {fileID: 4634748616572446276, guid: c62abfeb8fc5541f8a899759097bf6c2, type: 3}
     - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: enemy.enemyType
       value: 4

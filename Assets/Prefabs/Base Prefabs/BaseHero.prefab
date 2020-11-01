@@ -120,6 +120,10 @@ MonoBehaviour:
     currDEF: 2
     attacks:
     - {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
+    - {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
+    - {fileID: 4634748616572446276, guid: c62abfeb8fc5541f8a899759097bf6c2, type: 3}
+    - {fileID: 4634748616572446276, guid: cc3902fe32ea34ebdb9caa8e490de9a0, type: 3}
+    - {fileID: 4634748616572446276, guid: e5dc167c7d0eb466c932627d852d69ba, type: 3}
     stamina: 3
     intellect: 3
     dexterity: 3

@@ -8,7 +8,7 @@ public class EarthSpell : BaseAttack
     {
         attackName = "Earth";
         attackDescription = "Basic Earth spell which splits the ground beneath the target.";
-        attackDamage = 5f;
+        attackDamage = 20f;
         attackCost = 5f;
     }
 }
