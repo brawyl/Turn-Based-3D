@@ -59,6 +59,7 @@ public class HeroStateMachine : MonoBehaviour
 
     void Update()
     {
+        if (!alive) { currentState = TurnState.DEAD; }
         switch (currentState)
         {
             case TurnState.PROCESSING:
@@ -91,6 +92,7 @@ public class HeroStateMachine : MonoBehaviour
                 //reset GUI
                 battleSM.actionPanel.SetActive(false);
                 battleSM.targetSelectPanel.SetActive(false);
+                battleSM.magicPanel.SetActive(false);
 
                 if (battleSM.heroesInBattle.Count > 0)
                 {
@@ -111,6 +113,8 @@ public class HeroStateMachine : MonoBehaviour
                 this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(150, 150, 150, 255);
 
                 battleSM.heroInput = BattleStateMachine.HeroGUI.DONE;
+
+                battleSM.heroesToManage.Remove(this.gameObject);
 
                 //reset heroInput
                 battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;

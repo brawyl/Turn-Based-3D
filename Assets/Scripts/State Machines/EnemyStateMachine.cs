@@ -124,12 +124,14 @@ public class EnemyStateMachine : MonoBehaviour
         myAttack.attacker = enemy.theName;
         myAttack.type = "Enemy";
         myAttack.attackerGameObject = this.gameObject;
-        myAttack.targetGameObject = battleSM.heroesInBattle[ Random.Range(0, battleSM.heroesInBattle.Count) ];
+        if (battleSM.heroesInBattle.Count > 0)
+        {
+            myAttack.targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
 
-        int attackIndex = Random.Range(0, enemy.attacks.Count);
-        myAttack.chosenAttack = enemy.attacks[attackIndex];
-        Debug.Log(this.gameObject.name + " has chosen " + myAttack.chosenAttack.attackName + " and does " + myAttack.chosenAttack.attackDamage + " damage."); ;
-        battleSM.CollectActions(myAttack);
+            int attackIndex = Random.Range(0, enemy.attacks.Count);
+            myAttack.chosenAttack = enemy.attacks[attackIndex];
+            battleSM.CollectActions(myAttack);
+        }
     }
 
     private IEnumerator TimeForAction()

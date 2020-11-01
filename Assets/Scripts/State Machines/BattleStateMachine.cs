@@ -135,14 +135,23 @@ public class BattleStateMachine : MonoBehaviour
                             enemySM.currentState = EnemyStateMachine.TurnState.ACTION;
                         }
                     }
+                    battleState = PerformAction.PERFORMACTION;
                 }
                 if (performList[0].type == "Hero")
                 {
                     HeroStateMachine heroSM = performer.GetComponent<HeroStateMachine>();
                     heroSM.actionTarget = performList[0].targetGameObject;
-                    heroSM.currentState = HeroStateMachine.TurnState.ACTION;
+                    if (heroSM.currentState != HeroStateMachine.TurnState.DEAD)
+                    {
+                        heroSM.currentState = HeroStateMachine.TurnState.ACTION;
+                        battleState = PerformAction.PERFORMACTION;
+                    }
+                    else
+                    {
+                        performList.Remove(performList[0]);
+                        battleState = PerformAction.CHECKALIVE;
+                    }
                 }
-                battleState = PerformAction.PERFORMACTION;
                 break;
 
             case PerformAction.PERFORMACTION:
@@ -259,14 +268,17 @@ public class BattleStateMachine : MonoBehaviour
 
     void HeroInputDone()
     {
-        performList.Add(heroChoice);
+        if (heroesToManage.Count > 0)
+        {
+            performList.Add(heroChoice);
 
-        //clean up attack panel
-        ClearAttackPanel();
-
-        heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
-        heroesToManage.RemoveAt(0);
-        heroInput = HeroGUI.ACTIVATE;
+            //clean up attack panel
+            ClearAttackPanel();
+        
+            heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
+            heroesToManage.RemoveAt(0);
+            heroInput = HeroGUI.ACTIVATE;
+        }
     }
 
     void ClearAttackPanel()
@@ -352,8 +364,11 @@ public class BattleStateMachine : MonoBehaviour
 
         resultScreen.SetActive(false);
 
-        GameManager.instance.LoadSceneAfterLoss();
-        GameManager.instance.gameState = GameManager.GameStates.TOWN_STATE;
+        GameManager.instance.nextSpawnPoint = "SP_EnterTown";
+        GameManager.instance.sceneToLoad = "TownScene";
+        GameManager.instance.lastScene = "TownScene";
+        GameManager.instance.LoadSceneAfterBattle();
+        GameManager.instance.gameState = GameManager.GameStates.WORLD_STATE;
         GameManager.instance.enemiesToBattle.Clear();
     }
 }
