@@ -150,6 +150,29 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         actionStarted = true;
+
+        string attackingElement = battleSM.performList[0].chosenAttack.attackName.ToUpper();
+        bool showParticles = true;
+        switch (attackingElement)
+        {
+            case "WOOD":
+                break;
+            case "FIRE":
+                break;
+            case "EARTH":
+                break;
+            case "METAL":
+                break;
+            case "WATER":
+                break;
+            default:
+                showParticles = false;
+                break;
+        }
+
+        //turn on particle effect
+        if (showParticles) { gameObject.GetComponentInParent<ParticleSystem>().Play(); }
+
         //animate the enemy near the target to attack
         Vector3 targetPosition = new Vector3(actionTarget.transform.position.x + 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);
         while (MoveTowardsTarget(targetPosition)) { yield return null; }
@@ -159,6 +182,9 @@ public class HeroStateMachine : MonoBehaviour
 
         //do damage
         DoDamage();
+
+        //turn off particle effect
+        if (showParticles) { gameObject.GetComponentInParent<ParticleSystem>().Stop(); }
 
         //animate back to start position
         Vector3 firstPosition = startPosition;
