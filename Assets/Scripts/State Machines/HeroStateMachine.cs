@@ -153,17 +153,24 @@ public class HeroStateMachine : MonoBehaviour
 
         string attackingElement = battleSM.performList[0].chosenAttack.attackName.ToUpper();
         bool showParticles = true;
+        ParticleSystem elementParticles = gameObject.GetComponentInParent<ParticleSystem>();
+        ParticleSystemRenderer elementRender = elementParticles.GetComponent<ParticleSystemRenderer>();
         switch (attackingElement)
         {
             case "WOOD":
+                elementRender.material = new Material(Resources.Load<Material>("WoodParticle"));
                 break;
             case "FIRE":
+                elementRender.material = new Material(Resources.Load<Material>("FireParticle"));
                 break;
             case "EARTH":
+                elementRender.material = new Material(Resources.Load<Material>("EarthParticle"));
                 break;
             case "METAL":
+                elementRender.material = new Material(Resources.Load<Material>("MetalParticle"));
                 break;
             case "WATER":
+                elementRender.material = new Material(Resources.Load<Material>("WaterParticle"));
                 break;
             default:
                 showParticles = false;
@@ -171,7 +178,7 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         //turn on particle effect
-        if (showParticles) { gameObject.GetComponentInParent<ParticleSystem>().Play(); }
+        if (showParticles) { elementParticles.Play(); }
 
         //animate the enemy near the target to attack
         Vector3 targetPosition = new Vector3(actionTarget.transform.position.x + 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);
@@ -184,7 +191,7 @@ public class HeroStateMachine : MonoBehaviour
         DoDamage();
 
         //turn off particle effect
-        if (showParticles) { gameObject.GetComponentInParent<ParticleSystem>().Stop(); }
+        if (showParticles) { elementParticles.Stop(); }
 
         //animate back to start position
         Vector3 firstPosition = startPosition;
