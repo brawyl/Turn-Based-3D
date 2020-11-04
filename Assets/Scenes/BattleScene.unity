@@ -1621,6 +1621,10 @@ PrefabInstance:
       propertyPath: hero.currREGEN
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: elementDamage
+      value: 
+      objectReference: {fileID: 1432550538}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -1667,6 +1671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+--- !u!1 &1432550538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3008498494147802560, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+  m_PrefabInstance: {fileID: 1432550537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1453803286
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2039,10 @@ PrefabInstance:
       propertyPath: hero.currREGEN
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: elementDamage
+      value: 
+      objectReference: {fileID: 1635910322}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -2076,6 +2089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+--- !u!1 &1635910322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3008498494147802560, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+  m_PrefabInstance: {fileID: 1635910321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671177107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,6 +2263,10 @@ PrefabInstance:
       propertyPath: hero.currREGEN
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: elementDamage
+      value: 
+      objectReference: {fileID: 87452905021745602}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -2291,3 +2313,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+--- !u!1 &87452905021745602 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3008498494147802560, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+  m_PrefabInstance: {fileID: 87452905021745601}
+  m_PrefabAsset: {fileID: 0}

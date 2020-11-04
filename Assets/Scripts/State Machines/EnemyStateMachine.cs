@@ -28,7 +28,7 @@ public class EnemyStateMachine : MonoBehaviour
     //time for action
     private bool actionStarted = false;
     public GameObject actionTarget;
-    private float animSpeed = 10f;
+    private float animSpeed = 15f;
 
     //alive
     private bool alive = true;

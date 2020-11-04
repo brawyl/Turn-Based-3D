@@ -27,12 +27,13 @@ public class HeroStateMachine : MonoBehaviour
     private Image profileImage;
     public GameObject selector;
     public GameObject damageText;
+    public GameObject elementDamage;
 
     //IEnumerator
     public GameObject actionTarget;
     private bool actionStarted = false;
     private Vector3 startPosition;
-    private float animSpeed = 10f;
+    private float animSpeed = 15f;
 
     private bool alive = true;
     private bool regen = true;
@@ -155,22 +156,30 @@ public class HeroStateMachine : MonoBehaviour
         bool showParticles = true;
         ParticleSystem elementParticles = gameObject.GetComponentInParent<ParticleSystem>();
         ParticleSystemRenderer elementRender = elementParticles.GetComponent<ParticleSystemRenderer>();
+        ParticleSystem damageParticles = elementDamage.GetComponentInParent<ParticleSystem>();
+        ParticleSystemRenderer damageRender = damageParticles.GetComponent<ParticleSystemRenderer>();
+
         switch (attackingElement)
         {
             case "WOOD":
                 elementRender.material = new Material(Resources.Load<Material>("WoodParticle"));
+                damageRender.material = new Material(Resources.Load<Material>("WoodParticle"));
                 break;
             case "FIRE":
                 elementRender.material = new Material(Resources.Load<Material>("FireParticle"));
+                damageRender.material = new Material(Resources.Load<Material>("FireParticle"));
                 break;
             case "EARTH":
                 elementRender.material = new Material(Resources.Load<Material>("EarthParticle"));
+                damageRender.material = new Material(Resources.Load<Material>("EarthParticle"));
                 break;
             case "METAL":
                 elementRender.material = new Material(Resources.Load<Material>("MetalParticle"));
+                damageRender.material = new Material(Resources.Load<Material>("MetalParticle"));
                 break;
             case "WATER":
                 elementRender.material = new Material(Resources.Load<Material>("WaterParticle"));
+                damageRender.material = new Material(Resources.Load<Material>("WaterParticle"));
                 break;
             default:
                 showParticles = false;
@@ -178,14 +187,18 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         //turn on particle effect
-        if (showParticles) { elementParticles.Play(); }
+        if (showParticles) { elementParticles.Play(); damageParticles.Stop(); }
 
         //animate the enemy near the target to attack
         Vector3 targetPosition = new Vector3(actionTarget.transform.position.x + 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);
         while (MoveTowardsTarget(targetPosition)) { yield return null; }
 
+        if (showParticles) { damageParticles.Play(); }
+
         //wait
         yield return new WaitForSeconds(0.5f);
+
+        if (showParticles) { damageParticles.Stop(); }
 
         //do damage
         DoDamage();
