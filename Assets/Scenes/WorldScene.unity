@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 48.020752
       objectReference: {fileID: 0}
+    - target: {fileID: 551845200809744935, guid: dab794c0c504d4281bf116423331819f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4eb26fd9042d04d239e5324cc6175e57, type: 2}
     - target: {fileID: 551845200809744954, guid: dab794c0c504d4281bf116423331819f, type: 3}
       propertyPath: possibleEnemies.Array.size
       value: 3
@@ -327,6 +331,10 @@ PrefabInstance:
       propertyPath: possibleEnemies.Array.data[2]
       value: 
       objectReference: {fileID: 1697025168545911353, guid: 78b13fb30a9dd4441a6cec88172b9c80, type: 3}
+    - target: {fileID: 551845200809744954, guid: dab794c0c504d4281bf116423331819f, type: 3}
+      propertyPath: possibleEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 5808183611457674160, guid: c94ffc2e562dd440185ca612902d59b0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab794c0c504d4281bf116423331819f, type: 3}
 --- !u!1 &624775662
@@ -1194,6 +1202,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8897526712837438986, guid: cc578afb319a849dc91b078f7028a270, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e25dcf3570e2846bcbd26c041cc1df0e, type: 2}
     - target: {fileID: 8897526712837438988, guid: cc578afb319a849dc91b078f7028a270, type: 3}
       propertyPath: m_Name
       value: Encounter Region 2
@@ -1205,10 +1217,10 @@ PrefabInstance:
     - target: {fileID: 8897526712837438999, guid: cc578afb319a849dc91b078f7028a270, type: 3}
       propertyPath: possibleEnemies.Array.data[1]
       value: 
-      objectReference: {fileID: 5808183611457674160, guid: 6aac82294a2e349b2904f5724bea90db, type: 3}
+      objectReference: {fileID: 5808183611457674160, guid: 65b3ba056cc5c49ab8879ebfb7d160e7, type: 3}
     - target: {fileID: 8897526712837438999, guid: cc578afb319a849dc91b078f7028a270, type: 3}
       propertyPath: possibleEnemies.Array.data[0]
       value: 
-      objectReference: {fileID: 5808183611457674160, guid: c94ffc2e562dd440185ca612902d59b0, type: 3}
+      objectReference: {fileID: 1697025168545911353, guid: a8934246d11714db0ba942c8d93afee0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc578afb319a849dc91b078f7028a270, type: 3}

@@ -112,3 +112,5 @@ MonoBehaviour:
   battleScene: BattleScene
   possibleEnemies:
   - {fileID: 1697025168545911353, guid: a8934246d11714db0ba942c8d93afee0, type: 3}
+  backgroundType: {fileID: 8076925112151241280, guid: a3e0101a55bf249c89651089308ce0ed, type: 3}
+  floorType: {fileID: 2100000, guid: 625d1afbd13274ef48dadaba0c19388c, type: 2}

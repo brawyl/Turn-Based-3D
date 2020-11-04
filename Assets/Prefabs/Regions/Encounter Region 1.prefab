@@ -111,5 +111,6 @@ MonoBehaviour:
   maxAmountEnemies: 4
   battleScene: BattleScene
   possibleEnemies:
-  - {fileID: 1697025168545911353, guid: a8934246d11714db0ba942c8d93afee0, type: 3}
-  - {fileID: 5808183611457674160, guid: 65b3ba056cc5c49ab8879ebfb7d160e7, type: 3}
+  - {fileID: 5808183611457674160, guid: 6aac82294a2e349b2904f5724bea90db, type: 3}
+  backgroundType: {fileID: 1858889946338376018, guid: 0f78274ef1b0d46709b11a78fbe5f7d9, type: 3}
+  floorType: {fileID: 2100000, guid: fdcdbfaa59cb249c5bec81c1d8a04f5a, type: 2}

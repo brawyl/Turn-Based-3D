@@ -43,6 +43,8 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject targetSelectPanel;
     public GameObject magicPanel;
     public GameObject resultScreen;
+    public GameObject ground;
+    public Camera mainCamera;
 
     //magic attacks
     public Transform actionSpacer;
@@ -87,6 +89,13 @@ public class BattleStateMachine : MonoBehaviour
             enemiesInBattle.Add(newEnemy);
             enemyNames.Add(enemyName);
         }
+
+        //load region environment settings
+        GameObject bgImg = Instantiate(GameManager.instance.currRegion.backgroundType);
+        bgImg.GetComponent<Canvas>().worldCamera = mainCamera;
+        Material floorMaterial = Instantiate(GameManager.instance.currRegion.floorType);
+
+        ground.GetComponent<MeshRenderer>().material = floorMaterial;
     }
 
     // Start is called before the first frame update
