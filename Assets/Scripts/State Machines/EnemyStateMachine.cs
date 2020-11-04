@@ -95,7 +95,7 @@ public class EnemyStateMachine : MonoBehaviour
                         }
                     }
                     //change the color to gray / play dead animation
-                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(150, 150, 150, 255);
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(0, 0, 0, 25);
                     //set alive to be false
                     alive = false;
                     //reset enemy buttons
