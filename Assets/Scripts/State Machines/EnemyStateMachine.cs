@@ -177,11 +177,20 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        damageText.GetComponent<TextMesh>().text = damageAmount.ToString();
+        string enemyElement = enemy.enemyType.ToString().ToUpper();
+        float environmentDamage = 1.0f;
+        if (enemyElement.Equals(battleSM.environmentElement))
+        {
+            environmentDamage = 0.9f; //10% dmg reduction on matching element w environment
+        }
+
+        float calculatedDamage = damageAmount * environmentDamage;
+
+        damageText.GetComponent<TextMesh>().text = calculatedDamage.ToString();
         damageText.SetActive(true);
         StartCoroutine(HideDamageText());
 
-        enemy.currHP -= damageAmount;
+        enemy.currHP -= calculatedDamage;
         if (enemy.currHP <= 0)
         {
             enemy.currHP = 0;
