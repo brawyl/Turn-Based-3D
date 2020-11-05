@@ -45,6 +45,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject resultScreen;
     public GameObject ground;
     public Camera mainCamera;
+    public string environmentElement;
 
     //magic attacks
     public Transform actionSpacer;
@@ -96,6 +97,19 @@ public class BattleStateMachine : MonoBehaviour
         Material floorMaterial = Instantiate(GameManager.instance.currRegion.floorType);
 
         ground.GetComponent<MeshRenderer>().material = floorMaterial;
+
+        if (floorMaterial.name.Contains("Wood"))
+        {
+            environmentElement = "WOOD";
+        }
+        else if (floorMaterial.name.Contains("Water"))
+        {
+            environmentElement = "WATER";
+        }
+        else
+        {
+            environmentElement = "";
+        }
     }
 
     // Start is called before the first frame update

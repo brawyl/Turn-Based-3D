@@ -267,7 +267,13 @@ public class HeroStateMachine : MonoBehaviour
         string targetElement = actionTarget.GetComponent<EnemyStateMachine>().enemy.enemyType.ToString().ToUpper();
         string attackingElement = battleSM.performList[0].chosenAttack.attackName.ToUpper();
 
-        float calculatedDamage = baseDamage * elementalDamage(attackingElement, targetElement);
+        float environmentDamage = 1.0f;
+        if (attackingElement.Equals(battleSM.environmentElement))
+        {
+            environmentDamage = 1.2f; //extra 20% dmg on matching element w environment
+        }
+
+        float calculatedDamage = baseDamage * elementalDamage(attackingElement, targetElement) * environmentDamage;
 
         actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage);
         if (battleSM.performList[0].chosenAttack.attackCost > 0)
