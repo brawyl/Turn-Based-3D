@@ -191,7 +191,17 @@ public class EnemyStateMachine : MonoBehaviour
 
     void DoDamage()
     {
-        float calculatedDamage = enemy.currATK + battleSM.performList[0].chosenAttack.attackDamage; 
+        float baseDamage = enemy.currATK + battleSM.performList[0].chosenAttack.attackDamage;
+        string enemyElement = enemy.enemyType.ToString().ToUpper();
+
+        float environmentDamage = 1.0f;
+        if (enemyElement.Equals(battleSM.environmentElement))
+        {
+            environmentDamage = 1.2f; //extra 20% dmg on matching element w environment
+        }
+
+        float calculatedDamage = baseDamage * environmentDamage;
+
         actionTarget.GetComponent<HeroStateMachine>().TakeDamage(calculatedDamage);
     }
 
