@@ -19,6 +19,10 @@ PrefabInstance:
       propertyPath: enemy.enemyType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7722951089461900560, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
+      propertyPath: profileImg
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7722951089461900587, guid: 6c4af9e3069204c5781f0e24127ddcbc, type: 3}
       propertyPath: m_Name
       value: Earth Enemy
