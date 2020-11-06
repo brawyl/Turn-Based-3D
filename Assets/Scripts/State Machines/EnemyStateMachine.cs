@@ -161,6 +161,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         //reset the battleSM
         battleSM.battleState = BattleStateMachine.PerformAction.WAIT;
+        battleSM.UpdateTurnOrder();
 
         //end coroutine
         actionStarted = false;

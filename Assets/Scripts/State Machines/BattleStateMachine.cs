@@ -42,6 +42,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject actionPanel;
     public GameObject targetSelectPanel;
     public GameObject magicPanel;
+    public GameObject turnOrderPanel;
     public GameObject resultScreen;
     public GameObject ground;
     public Camera mainCamera;
@@ -53,6 +54,11 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject actionButton;
     public GameObject magicActionButton;
     private List<GameObject> attackButtons = new List<GameObject>();
+
+    //turn order display
+    public Transform turnOrderSpacer;
+    public GameObject turnOrderItem;
+    private List<GameObject> turnOrderItems = new List<GameObject>();
 
     //enemy attacks
     private List<GameObject> enemyBtns = new List<GameObject>();
@@ -175,6 +181,7 @@ public class BattleStateMachine : MonoBehaviour
                         battleState = PerformAction.CHECKALIVE;
                     }
                 }
+                UpdateTurnOrder();
                 break;
 
             case PerformAction.PERFORMACTION:
@@ -350,6 +357,44 @@ public class BattleStateMachine : MonoBehaviour
         else
         {
             magicButton.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    public void UpdateTurnOrder()
+    {
+        foreach (GameObject turnItem in turnOrderItems)
+        {
+            Destroy(turnItem);
+        }
+        turnOrderItems.Clear();
+
+        if (performList.Count > 0)
+        {
+            foreach (HandleTurn turn in performList)
+            {
+                GameObject turnItem = Instantiate(turnOrderItem) as GameObject;
+                Text turnItemText = turnItem.GetComponentInChildren<Text>();
+                Image turnItemImg = turnItem.GetComponentInChildren<Image>();
+                string imgPath = "";
+
+                if (turn.type == "Hero")
+                {
+                    string heroName = turn.attackerGameObject.GetComponent<HeroStateMachine>().hero.theName;
+                    imgPath = "profile_" + heroName.ToLower();
+                    turnItemText.text = heroName;
+                }
+                else
+                {
+                    string enemyType = turn.attackerGameObject.GetComponent<EnemyStateMachine>().enemy.enemyType.ToString();
+                    imgPath = "profile_" + enemyType.ToLower();
+                    turnItemText.text = turn.attacker;
+                }
+
+                turnItemImg.sprite = Resources.Load<Sprite>(imgPath);
+
+                turnItem.transform.SetParent(turnOrderSpacer, false);
+                turnOrderItems.Add(turnItem);
+            }
         }
     }
 

@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -2135,6 +2135,7 @@ MonoBehaviour:
   actionPanel: {fileID: 1540903350}
   targetSelectPanel: {fileID: 686273347}
   magicPanel: {fileID: 1298579210}
+  turnOrderPanel: {fileID: 1937295480}
   resultScreen: {fileID: 523761026}
   ground: {fileID: 72018183}
   mainCamera: {fileID: 963194227}
@@ -2143,6 +2144,8 @@ MonoBehaviour:
   magicSpacer: {fileID: 1453803287}
   actionButton: {fileID: 197644545185641256, guid: 232157f5f9b9c40a2b271ffb3cffc6d3, type: 3}
   magicActionButton: {fileID: 197644545185641256, guid: a550d5def3eea4b838913545162739e8, type: 3}
+  turnOrderSpacer: {fileID: 2013841008}
+  turnOrderItem: {fileID: 5133541727440835485, guid: e572948f0ed3b48aaa07e49ab83622bc, type: 3}
   spawnPoints:
   - {fileID: 1576856884}
   - {fileID: 1321768309}

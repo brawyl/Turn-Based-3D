@@ -217,6 +217,7 @@ public class HeroStateMachine : MonoBehaviour
         if (battleSM.battleState != BattleStateMachine.PerformAction.WIN && battleSM.battleState != BattleStateMachine.PerformAction.LOSE)
         {
             battleSM.battleState = BattleStateMachine.PerformAction.WAIT;
+            battleSM.UpdateTurnOrder();
             //reset this enemy state
             currCooldown = 0f;
             currentState = TurnState.PROCESSING;
