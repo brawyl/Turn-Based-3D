@@ -181,7 +181,6 @@ public class BattleStateMachine : MonoBehaviour
                         battleState = PerformAction.CHECKALIVE;
                     }
                 }
-                UpdateTurnOrder();
                 break;
 
             case PerformAction.PERFORMACTION:
@@ -322,6 +321,7 @@ public class BattleStateMachine : MonoBehaviour
             Destroy(atkBtn);
         }
         attackButtons.Clear();
+        UpdateTurnOrder();
     }
 
     void CreateAttackButtons()

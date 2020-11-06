@@ -131,6 +131,7 @@ public class EnemyStateMachine : MonoBehaviour
             int attackIndex = Random.Range(0, enemy.attacks.Count);
             myAttack.chosenAttack = enemy.attacks[attackIndex];
             battleSM.CollectActions(myAttack);
+            battleSM.UpdateTurnOrder();
         }
     }
 
@@ -185,7 +186,7 @@ public class EnemyStateMachine : MonoBehaviour
             environmentDamage = 0.9f; //10% dmg reduction on matching element w environment
         }
 
-        float calculatedDamage = damageAmount * environmentDamage;
+        float calculatedDamage = Mathf.RoundToInt(damageAmount * environmentDamage);
 
         damageText.GetComponent<TextMesh>().text = calculatedDamage.ToString();
         damageText.SetActive(true);

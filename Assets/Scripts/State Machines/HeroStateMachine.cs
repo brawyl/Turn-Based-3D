@@ -114,6 +114,7 @@ public class HeroStateMachine : MonoBehaviour
                             battleSM.performList[i].targetGameObject = battleSM.heroesInBattle[Random.Range(0, battleSM.heroesInBattle.Count)];
                         }
                     }
+                    battleSM.UpdateTurnOrder();
                 }
 
                 //change color / play death animation
@@ -238,11 +239,12 @@ public class HeroStateMachine : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        damageText.GetComponent<TextMesh>().text = damageAmount.ToString();
+        float calculatedDamage = Mathf.RoundToInt(damageAmount);
+        damageText.GetComponent<TextMesh>().text = calculatedDamage.ToString();
         damageText.SetActive(true);
         StartCoroutine(HideDamageText());
 
-        hero.currHP -= damageAmount;
+        hero.currHP -= calculatedDamage;
         if (hero.currHP <= 0)
         {
             hero.currHP = 0;
