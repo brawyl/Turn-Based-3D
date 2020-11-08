@@ -177,22 +177,34 @@ public class EnemyStateMachine : MonoBehaviour
         return target != ( transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime) );
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, string damageElement)
     {
         string enemyElement = enemy.enemyType.ToString().ToUpper();
+
+        //environment damage factor
         float environmentDamage = 1.0f;
         if (enemyElement.Equals(battleSM.environmentElement))
         {
-            environmentDamage = 0.9f; //10% dmg reduction on matching element w environment
+            environmentDamage = 0.8f; //20% dmg reduction on matching element w environment
         }
 
-        float calculatedDamage = Mathf.RoundToInt(damageAmount * environmentDamage);
+        //stacked element factor
+        float elementDamage = elementalDamage(damageElement, enemyElement);
+        string lastHitElement = enemy.lastHitType;
+        if (damageElement.Equals(lastHitElement))
+        {
+            elementDamage *= elementDamage; //square the elemental damage if the same element was used back to back
+        }
+        enemy.lastHitType = damageElement;
 
-        damageText.GetComponent<TextMesh>().text = calculatedDamage.ToString();
+        float calculatedDamage = damageAmount * environmentDamage * elementDamage;
+        float roundedDamage = Mathf.RoundToInt(calculatedDamage);
+
+        damageText.GetComponent<TextMesh>().text = roundedDamage.ToString();
         damageText.SetActive(true);
         StartCoroutine(HideDamageText());
 
-        enemy.currHP -= calculatedDamage;
+        enemy.currHP -= roundedDamage;
         if (enemy.currHP <= 0)
         {
             enemy.currHP = 0;
@@ -221,5 +233,50 @@ public class EnemyStateMachine : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         damageText.SetActive(false);
+    }
+
+    float elementalDamage(string attack, string target)
+    {
+        //min, less, normal, more, max
+        float[] damageMultiplier = { 0.6f, 0.8f, 1.0f, 1.5f, 2.0f };
+        switch (attack)
+        {
+            case "WOOD":
+                if (target.Equals("WOOD")) { return damageMultiplier[2]; }
+                else if (target.Equals("FIRE")) { return damageMultiplier[1]; }
+                else if (target.Equals("EARTH")) { return damageMultiplier[3]; }
+                else if (target.Equals("METAL")) { return damageMultiplier[0]; }
+                else if (target.Equals("WATER")) { return damageMultiplier[4]; }
+                break;
+            case "FIRE":
+                if (target.Equals("WOOD")) { return damageMultiplier[4]; }
+                else if (target.Equals("FIRE")) { return damageMultiplier[2]; }
+                else if (target.Equals("EARTH")) { return damageMultiplier[1]; }
+                else if (target.Equals("METAL")) { return damageMultiplier[3]; }
+                else if (target.Equals("WATER")) { return damageMultiplier[0]; }
+                break;
+            case "EARTH":
+                if (target.Equals("WOOD")) { return damageMultiplier[0]; }
+                else if (target.Equals("FIRE")) { return damageMultiplier[4]; }
+                else if (target.Equals("EARTH")) { return damageMultiplier[2]; }
+                else if (target.Equals("METAL")) { return damageMultiplier[1]; }
+                else if (target.Equals("WATER")) { return damageMultiplier[3]; }
+                break;
+            case "METAL":
+                if (target.Equals("WOOD")) { return damageMultiplier[3]; }
+                else if (target.Equals("FIRE")) { return damageMultiplier[0]; }
+                else if (target.Equals("EARTH")) { return damageMultiplier[4]; }
+                else if (target.Equals("METAL")) { return damageMultiplier[2]; }
+                else if (target.Equals("WATER")) { return damageMultiplier[1]; }
+                break;
+            case "WATER":
+                if (target.Equals("WOOD")) { return damageMultiplier[1]; }
+                else if (target.Equals("FIRE")) { return damageMultiplier[3]; }
+                else if (target.Equals("EARTH")) { return damageMultiplier[0]; }
+                else if (target.Equals("METAL")) { return damageMultiplier[4]; }
+                else if (target.Equals("WATER")) { return damageMultiplier[2]; }
+                break;
+        }
+        return 1.0f;
     }
 }

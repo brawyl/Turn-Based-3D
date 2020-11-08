@@ -14,16 +14,8 @@ public class BaseEnemy : BaseClass
         WATER
     }
 
-    public enum Rarity
-    {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        SUPERRARE
-    }
-
     public Type enemyType;
-    public Rarity rarity;
+    public string lastHitType;
 
     public int stamina;
     public int intellect;

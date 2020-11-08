@@ -290,9 +290,9 @@ public class HeroStateMachine : MonoBehaviour
             environmentDamage = 1.2f; //extra 20% dmg on matching element w environment
         }
 
-        float calculatedDamage = baseDamage * elementalDamage(attackingElement, targetElement) * environmentDamage;
+        float calculatedDamage = baseDamage * environmentDamage;
 
-        actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage);
+        actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage, attackingElement);
         if (battleSM.performList[0].chosenAttack.attackCost > 0)
         {
             TakeDamage(battleSM.performList[0].chosenAttack.attackCost);
@@ -339,50 +339,5 @@ public class HeroStateMachine : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         damageText.SetActive(false);
-    }
-
-    float elementalDamage(string attack, string target)
-    {
-        //min, less, normal, more, max
-        float[] damageMultiplier = { 0.6f, 0.8f, 1.0f, 1.5f, 2.0f };
-        switch (attack)
-        {
-            case "WOOD":
-                if (target.Equals("WOOD")) { return damageMultiplier[2]; }
-                else if (target.Equals("FIRE")) { return damageMultiplier[1]; }
-                else if (target.Equals("EARTH")) { return damageMultiplier[3]; }
-                else if (target.Equals("METAL")) { return damageMultiplier[0]; }
-                else if (target.Equals("WATER")) { return damageMultiplier[4]; }
-                break;
-            case "FIRE":
-                if (target.Equals("WOOD")) { return damageMultiplier[4]; }
-                else if (target.Equals("FIRE")) { return damageMultiplier[2]; }
-                else if (target.Equals("EARTH")) { return damageMultiplier[1]; }
-                else if (target.Equals("METAL")) { return damageMultiplier[3]; }
-                else if (target.Equals("WATER")) { return damageMultiplier[0]; }
-                break;
-            case "EARTH":
-                if (target.Equals("WOOD")) { return damageMultiplier[0]; }
-                else if (target.Equals("FIRE")) { return damageMultiplier[4]; }
-                else if (target.Equals("EARTH")) { return damageMultiplier[2]; }
-                else if (target.Equals("METAL")) { return damageMultiplier[1]; }
-                else if (target.Equals("WATER")) { return damageMultiplier[3]; }
-                break;
-            case "METAL":
-                if (target.Equals("WOOD")) { return damageMultiplier[3]; }
-                else if (target.Equals("FIRE")) { return damageMultiplier[0]; }
-                else if (target.Equals("EARTH")) { return damageMultiplier[4]; }
-                else if (target.Equals("METAL")) { return damageMultiplier[2]; }
-                else if (target.Equals("WATER")) { return damageMultiplier[1]; }
-                break;
-            case "WATER":
-                if (target.Equals("WOOD")) { return damageMultiplier[1]; }
-                else if (target.Equals("FIRE")) { return damageMultiplier[3]; }
-                else if (target.Equals("EARTH")) { return damageMultiplier[0]; }
-                else if (target.Equals("METAL")) { return damageMultiplier[4]; }
-                else if (target.Equals("WATER")) { return damageMultiplier[2]; }
-                break;
-        }
-        return 1.0f;
     }
 }
