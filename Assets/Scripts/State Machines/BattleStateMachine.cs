@@ -305,6 +305,7 @@ public class BattleStateMachine : MonoBehaviour
             ClearAttackPanel();
         
             heroesToManage[0].transform.Find("Selector").gameObject.SetActive(false);
+            heroesToManage[0].GetComponent<HeroStateMachine>().activeTurn = false;
             heroesToManage.RemoveAt(0);
             heroInput = HeroGUI.ACTIVATE;
         }
@@ -358,6 +359,8 @@ public class BattleStateMachine : MonoBehaviour
         {
             magicButton.GetComponent<Button>().interactable = false;
         }
+
+        heroesToManage[0].GetComponent<HeroStateMachine>().activeTurn = true;
     }
 
     public void UpdateTurnOrder()

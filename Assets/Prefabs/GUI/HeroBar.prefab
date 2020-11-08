@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroName: {fileID: 5133541727612576077}
   heroHP: {fileID: 5133541727409469532}
+  delayTimer: {fileID: 8888217615762921686}
   progressBar: {fileID: 5133541727483676212}
   healthBar: {fileID: 6038170282157782475}
   profileImage: {fileID: 479960987929082967}

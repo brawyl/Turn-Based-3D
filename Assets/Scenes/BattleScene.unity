@@ -2392,41 +2392,9 @@ PrefabInstance:
       value: Hero 1
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.attacks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.baseHP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.currHP
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.attacks.Array.data[0]
+      propertyPath: timerText
       value: 
-      objectReference: {fileID: 4634748616572446276, guid: cc3902fe32ea34ebdb9caa8e490de9a0, type: 3}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.baseATK
-      value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.currATK
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.baseREGEN
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: hero.currREGEN
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: elementDamage
-      value: 
-      objectReference: {fileID: 87452905021745602}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -2471,14 +2439,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3008498494147802560, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
---- !u!1 &87452905021745602 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3008498494147802560, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
-  m_PrefabInstance: {fileID: 87452905021745601}
-  m_PrefabAsset: {fileID: 0}

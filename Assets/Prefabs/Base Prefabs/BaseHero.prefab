@@ -117,18 +117,14 @@ MonoBehaviour:
     theName: red
     baseHP: 100
     currHP: 100
-    baseATK: 25
-    currATK: 25
+    baseATK: 20
+    currATK: 20
     baseDEF: 2
     currDEF: 2
-    baseREGEN: 0
-    currREGEN: 0
+    baseREGEN: 3
+    currREGEN: 3
     attacks:
-    - {fileID: 774606816181449096, guid: f2a1a0113af6142298469cc4b231509e, type: 3}
-    - {fileID: 4634748616572446276, guid: 07b310bcf5c05406f937e94ee3d7efdb, type: 3}
-    - {fileID: 4634748616572446276, guid: c62abfeb8fc5541f8a899759097bf6c2, type: 3}
     - {fileID: 4634748616572446276, guid: cc3902fe32ea34ebdb9caa8e490de9a0, type: 3}
-    - {fileID: 4634748616572446276, guid: e5dc167c7d0eb466c932627d852d69ba, type: 3}
     stamina: 3
     intellect: 3
     dexterity: 3
@@ -142,9 +138,10 @@ MonoBehaviour:
   currentState: 0
   selector: {fileID: 87452904994607392}
   damageText: {fileID: 447072233402915524}
-  elementDamage: {fileID: 0}
+  elementDamage: {fileID: 3008498494147802560}
   actionTarget: {fileID: 0}
   heroPanel: {fileID: 5133541727440835485, guid: 4e88f57b2a34b4450a056c2c67bc8bac, type: 3}
+  timerText: {fileID: 0}
 --- !u!198 &4456756244417861542
 ParticleSystem:
   m_ObjectHideFlags: 0

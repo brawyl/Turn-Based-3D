@@ -42,6 +42,10 @@ public class HeroStateMachine : MonoBehaviour
     public GameObject heroPanel;
     private Transform heroPanelSpacer;
 
+    public float delayValue = 0f;
+    private Text timerText;
+    public bool activeTurn = false;
+
     void Start()
     {
         //find spacer
@@ -78,6 +82,10 @@ public class HeroStateMachine : MonoBehaviour
                 if (regen)
                 {
                     HealDamage(hero.currREGEN);
+                }
+                if (activeTurn)
+                {
+                    UpdateDelayTimer();
                 }
                 break;
 
@@ -140,6 +148,7 @@ public class HeroStateMachine : MonoBehaviour
 
         if (currCooldown >= maxCooldown)
         {
+            delayValue = 0f;
             currentState = TurnState.ADDTOLIST;
         }
     }
@@ -291,6 +300,8 @@ public class HeroStateMachine : MonoBehaviour
         stats = heroPanel.GetComponent<HeroPanelStats>();
         stats.heroName.text = hero.theName;
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
+        timerText = stats.delayTimer;
+        timerText.text = "0.00";
         
         progressBar = stats.progressBar;
         healthBar = stats.healthBar;
@@ -308,6 +319,12 @@ public class HeroStateMachine : MonoBehaviour
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
         float calcHealth = hero.currHP / hero.baseHP;
         healthBar.transform.localScale = new Vector3(Mathf.Clamp(calcHealth, 0, 1), healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+    }
+
+    void UpdateDelayTimer()
+    {
+        delayValue += Time.deltaTime;
+        timerText.text = delayValue.ToString("F2");
     }
 
     IEnumerator HideDamageText()
