@@ -290,7 +290,10 @@ public class HeroStateMachine : MonoBehaviour
             environmentDamage = 1.2f; //extra 20% dmg on matching element w environment
         }
 
-        float calculatedDamage = baseDamage * environmentDamage;
+        //5% plus or minus on attack damage
+        float damageRange = Random.Range(0.95f, 1.05f);
+
+        float calculatedDamage = baseDamage * environmentDamage * damageRange;
 
         actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage, attackingElement);
         if (battleSM.performList[0].chosenAttack.attackCost > 0)

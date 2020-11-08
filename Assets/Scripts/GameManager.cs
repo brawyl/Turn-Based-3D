@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
         {
             if (Random.Range(0,1000) < 10)
             {
-                //Debug.Log("Got Attacked");
                 gotAttacked = true;
             }
         }
