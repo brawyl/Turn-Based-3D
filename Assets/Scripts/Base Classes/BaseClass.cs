@@ -15,6 +15,8 @@ public class BaseClass
     public float currDEF;
     public float baseREGEN;
     public float currREGEN;
+    public float baseSPD;
+    public float currSPD;
 
     public List<BaseAttack> attacks = new List<BaseAttack>();
 }

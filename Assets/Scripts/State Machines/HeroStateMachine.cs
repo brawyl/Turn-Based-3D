@@ -21,7 +21,7 @@ public class HeroStateMachine : MonoBehaviour
     public TurnState currentState;
     //for the progress bar
     private float currCooldown = 0f;
-    private float maxCooldown = 5f;
+    private float maxCooldown = 8f;
     private Image progressBar;
     private Image healthBar;
     private Image profileImage;
@@ -42,9 +42,9 @@ public class HeroStateMachine : MonoBehaviour
     public GameObject heroPanel;
     private Transform heroPanelSpacer;
 
+    public bool activeTurn = false;
     public float delayValue = 0f;
     private Text timerText;
-    public bool activeTurn = false;
 
     void Start()
     {
@@ -55,8 +55,6 @@ public class HeroStateMachine : MonoBehaviour
         CreateHeroPanel();
 
         startPosition = transform.position;
-        //can use speed stat instead of 2.5f
-        currCooldown = Random.Range(0, 2.5f);
         selector.SetActive(false);
         damageText.SetActive(false);
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
@@ -85,7 +83,13 @@ public class HeroStateMachine : MonoBehaviour
                 }
                 if (activeTurn)
                 {
+                    //full opacity text on active turn
+                    timerText.color = new Color(255, 255, 255, 1f);
                     UpdateDelayTimer();
+                }
+                else
+                {
+                    timerText.color = new Color(255, 255, 255, 0.5f);
                 }
                 break;
 
@@ -228,8 +232,9 @@ public class HeroStateMachine : MonoBehaviour
         {
             battleSM.battleState = BattleStateMachine.PerformAction.WAIT;
             battleSM.UpdateTurnOrder();
-            //reset this enemy state
-            currCooldown = 0f;
+            //reset this state
+            float delayFactor = 5f - delayValue;
+            currCooldown = Mathf.Clamp(delayFactor, 0, 4);
             currentState = TurnState.PROCESSING;
         }
         else
@@ -302,7 +307,9 @@ public class HeroStateMachine : MonoBehaviour
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
         timerText = stats.delayTimer;
         timerText.text = "0.00";
-        
+
+        currCooldown = Random.Range(1f, Mathf.Clamp(hero.currSPD, 0, 8));
+
         progressBar = stats.progressBar;
         healthBar = stats.healthBar;
         float calcHealth = hero.currHP / hero.baseHP;
