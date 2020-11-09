@@ -46,6 +46,8 @@ public class HeroStateMachine : MonoBehaviour
     public float delayValue = 0f;
     private Text timerText;
 
+    public CameraShake cameraShake;
+
     void Start()
     {
         //find spacer
@@ -291,7 +293,14 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         //5% plus or minus on attack damage
-        float damageRange = Random.Range(0.95f, 1.05f);
+        float damageRange = Random.Range(0.9f, 1.1f);
+
+        //critical hit check
+        if (damageRange > 1.08f)
+        {
+            StartCoroutine(cameraShake.Shake(.15f, .4f));
+            damageRange = 1.5f;
+        }
 
         float calculatedDamage = baseDamage * environmentDamage * damageRange;
 
