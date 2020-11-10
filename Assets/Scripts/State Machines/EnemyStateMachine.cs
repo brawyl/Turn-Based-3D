@@ -154,7 +154,7 @@ public class EnemyStateMachine : MonoBehaviour
         while(MoveTowardsTarget(targetPosition)) {  yield return null; }
 
         //wait
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
 
         //do damage
         DoDamage();
@@ -248,7 +248,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     IEnumerator HideDamageText()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.7f);
 
         damageText.SetActive(false);
         critText.SetActive(false);

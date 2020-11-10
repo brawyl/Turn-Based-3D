@@ -212,7 +212,7 @@ public class HeroStateMachine : MonoBehaviour
         if (showParticles) { damageParticles.Play(); }
 
         //wait
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
 
         if (showParticles) { damageParticles.Stop(); }
 
@@ -352,7 +352,7 @@ public class HeroStateMachine : MonoBehaviour
 
     IEnumerator HideDamageText()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.7f);
 
         damageText.SetActive(false);
     }

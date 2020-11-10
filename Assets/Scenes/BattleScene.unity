@@ -1629,11 +1629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.baseREGEN
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.currREGEN
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: elementDamage
@@ -2051,11 +2051,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.baseREGEN
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: hero.currREGEN
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: elementDamage
@@ -2451,6 +2451,14 @@ PrefabInstance:
       propertyPath: cameraShake
       value: 
       objectReference: {fileID: 963194229}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.baseREGEN
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 87452906023162634, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
+      propertyPath: hero.currREGEN
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 87452906023162635, guid: f0ef61c9a4400470c81dde09683dda88, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
