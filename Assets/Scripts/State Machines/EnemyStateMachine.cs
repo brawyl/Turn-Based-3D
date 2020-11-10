@@ -25,6 +25,8 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject selector;
     public GameObject damageText;
     public GameObject critText;
+    public GameObject weakText;
+    public GameObject resistText;
 
     //time for action
     private bool actionStarted = false;
@@ -39,6 +41,8 @@ public class EnemyStateMachine : MonoBehaviour
         selector.SetActive(false);
         damageText.SetActive(false);
         critText.SetActive(false);
+        weakText.SetActive(false);
+        resistText.SetActive(false);
         currCooldown = Random.Range(0, 4f);
         currentState = TurnState.PROCESSING;
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
@@ -205,6 +209,8 @@ public class EnemyStateMachine : MonoBehaviour
         damageText.GetComponent<TextMesh>().text = roundedDamage.ToString();
         damageText.SetActive(true);
         if (crit) { critText.SetActive(true); }
+        if (elementDamage > 1) { weakText.SetActive(true); }
+        if (elementDamage < 1) { resistText.SetActive(true); }
         StartCoroutine(HideDamageText());
 
         enemy.currHP -= roundedDamage;
@@ -246,14 +252,18 @@ public class EnemyStateMachine : MonoBehaviour
 
         damageText.SetActive(false);
         critText.SetActive(false);
+        weakText.SetActive(false);
+        resistText.SetActive(false);
     }
 
     float elementalDamage(string attack, string target)
     {
         //min, less, normal, more, max
         float[] damageMultiplier = { 0.6f, 0.8f, 1.0f, 1.5f, 2.0f };
+
         //don't check if element attack is neutral
-        if (attack.Length > 1)
+        string[] elementList = { "WOOD", "FIRE", "EARTH", "METAL", "WATER" };
+        if (System.Array.IndexOf(elementList, attack) > -1)
         {
             switch (attack)
             {

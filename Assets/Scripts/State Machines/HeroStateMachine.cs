@@ -283,7 +283,6 @@ public class HeroStateMachine : MonoBehaviour
     void DoDamage()
     {
         float baseDamage = hero.currATK + battleSM.performList[0].chosenAttack.attackDamage;
-        string targetElement = actionTarget.GetComponent<EnemyStateMachine>().enemy.enemyType.ToString().ToUpper();
         string attackingElement = battleSM.performList[0].chosenAttack.attackName.ToUpper();
 
         float environmentDamage = 1.0f;
@@ -295,16 +294,12 @@ public class HeroStateMachine : MonoBehaviour
         //5% plus or minus on attack damage
         float damageRange = Random.Range(0.9f, 1.1f);
 
-        //critical hit check (10% chance)
-        //if (damageRange > 1.08f)
-        //{
-        //    StartCoroutine(cameraShake.Shake(.15f, .4f));
-        //    damageRange = 1.5f;
-        //}
-
         //crit on 1.xx delay value
+        //cannot crit an elemental attack
         bool crit = false;
-        if (timerText.text.Substring(0,1).Equals("1"))
+        string[] elementList = { "WOOD", "FIRE", "EARTH", "METAL", "WATER" };
+        int elementIndex = System.Array.IndexOf(elementList, attackingElement);
+        if (timerText.text.Substring(0,1).Equals("1") && elementIndex < 0)
         {
             StartCoroutine(cameraShake.Shake(.15f, .4f));
             damageRange = 1.5f;
