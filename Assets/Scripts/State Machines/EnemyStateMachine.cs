@@ -223,10 +223,10 @@ public class EnemyStateMachine : MonoBehaviour
             environmentDamage = 1.2f; //extra 20% dmg on matching element w environment
         }
 
-        //5% plus or minus on attack damage
+        //10% plus or minus on attack damage
         float damageRange = Random.Range(0.9f, 1.1f);
 
-        //critical hit check
+        //critical hit check (10% chance)
         if (damageRange > 1.08f)
         {
             damageRange = 1.5f;

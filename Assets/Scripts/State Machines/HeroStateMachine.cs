@@ -295,8 +295,15 @@ public class HeroStateMachine : MonoBehaviour
         //5% plus or minus on attack damage
         float damageRange = Random.Range(0.9f, 1.1f);
 
-        //critical hit check
-        if (damageRange > 1.08f)
+        //critical hit check (10% chance)
+        //if (damageRange > 1.08f)
+        //{
+        //    StartCoroutine(cameraShake.Shake(.15f, .4f));
+        //    damageRange = 1.5f;
+        //}
+
+        //crit on 1.xx delay value
+        if (timerText.text.Substring(0,1).Equals("1"))
         {
             StartCoroutine(cameraShake.Shake(.15f, .4f));
             damageRange = 1.5f;
