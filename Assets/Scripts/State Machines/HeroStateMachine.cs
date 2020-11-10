@@ -303,15 +303,17 @@ public class HeroStateMachine : MonoBehaviour
         //}
 
         //crit on 1.xx delay value
+        bool crit = false;
         if (timerText.text.Substring(0,1).Equals("1"))
         {
             StartCoroutine(cameraShake.Shake(.15f, .4f));
             damageRange = 1.5f;
+            crit = true;
         }
 
         float calculatedDamage = baseDamage * environmentDamage * damageRange;
 
-        actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage, attackingElement);
+        actionTarget.GetComponent<EnemyStateMachine>().TakeDamage(calculatedDamage, attackingElement, crit);
         if (battleSM.performList[0].chosenAttack.attackCost > 0)
         {
             TakeDamage(battleSM.performList[0].chosenAttack.attackCost);

@@ -24,6 +24,7 @@ public class EnemyStateMachine : MonoBehaviour
     private Vector3 startPosition;
     public GameObject selector;
     public GameObject damageText;
+    public GameObject critText;
 
     //time for action
     private bool actionStarted = false;
@@ -37,6 +38,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         selector.SetActive(false);
         damageText.SetActive(false);
+        critText.SetActive(false);
         currCooldown = Random.Range(0, 4f);
         currentState = TurnState.PROCESSING;
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
@@ -177,7 +179,7 @@ public class EnemyStateMachine : MonoBehaviour
         return target != ( transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime) );
     }
 
-    public void TakeDamage(float damageAmount, string damageElement)
+    public void TakeDamage(float damageAmount, string damageElement, bool crit)
     {
         string enemyElement = enemy.enemyType.ToString().ToUpper();
 
@@ -202,6 +204,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         damageText.GetComponent<TextMesh>().text = roundedDamage.ToString();
         damageText.SetActive(true);
+        if (crit) { critText.SetActive(true); }
         StartCoroutine(HideDamageText());
 
         enemy.currHP -= roundedDamage;
@@ -242,6 +245,7 @@ public class EnemyStateMachine : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         damageText.SetActive(false);
+        critText.SetActive(false);
     }
 
     float elementalDamage(string attack, string target)
