@@ -280,6 +280,7 @@ public class BattleStateMachine : MonoBehaviour
 
     public void InputAction()
     {
+        GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         heroChoice.attacker = heroesToManage[0].name;
         heroChoice.attackerGameObject = heroesToManage[0];
         heroChoice.type = "Hero";
@@ -291,6 +292,7 @@ public class BattleStateMachine : MonoBehaviour
 
     public void InputTarget(GameObject target)
     {
+        GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         heroChoice.targetGameObject = target;
         heroInput = HeroGUI.DONE;
     }
@@ -403,12 +405,14 @@ public class BattleStateMachine : MonoBehaviour
 
     public void InputMagicAction()
     {
+        GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         actionPanel.SetActive(false);
         magicPanel.SetActive(true);
     }
 
     public void InputMagic(BaseAttack chosenMagic)
     {
+        GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         heroChoice.attacker = heroesToManage[0].name;
         heroChoice.attackerGameObject = heroesToManage[0];
         heroChoice.type = "Hero";
