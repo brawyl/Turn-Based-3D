@@ -27,6 +27,7 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject critText;
     public GameObject weakText;
     public GameObject resistText;
+    public GameObject stackText;
 
     //time for action
     private bool actionStarted = false;
@@ -43,6 +44,7 @@ public class EnemyStateMachine : MonoBehaviour
         critText.SetActive(false);
         weakText.SetActive(false);
         resistText.SetActive(false);
+        stackText.SetActive(false);
         currCooldown = Random.Range(0, 4f);
         currentState = TurnState.PROCESSING;
         battleSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
@@ -200,6 +202,7 @@ public class EnemyStateMachine : MonoBehaviour
         if (damageElement.Equals(lastHitElement))
         {
             elementDamage *= elementDamage; //square the elemental damage if the same element was used back to back
+            stackText.SetActive(true);
         }
         enemy.lastHitType = damageElement;
 
@@ -254,6 +257,7 @@ public class EnemyStateMachine : MonoBehaviour
         critText.SetActive(false);
         weakText.SetActive(false);
         resistText.SetActive(false);
+        stackText.SetActive(false);
     }
 
     float elementalDamage(string attack, string target)

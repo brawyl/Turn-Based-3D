@@ -145,6 +145,7 @@ MonoBehaviour:
   heroPanel: {fileID: 5133541727440835485, guid: 4e88f57b2a34b4450a056c2c67bc8bac, type: 3}
   activeTurn: 0
   delayValue: 0
+  cameraShake: {fileID: 0}
 --- !u!198 &4456756244417861542
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -9750,7 +9751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5416437683187463464, guid: 0f9743ad20eef4e0e8e05162b3723749, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5416437683187463464, guid: 0f9743ad20eef4e0e8e05162b3723749, type: 3}
       propertyPath: m_LocalPosition.z
