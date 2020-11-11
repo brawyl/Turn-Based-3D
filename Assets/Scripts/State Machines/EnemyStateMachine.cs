@@ -232,16 +232,14 @@ public class EnemyStateMachine : MonoBehaviour
         AudioClip enemyAttackAudio = (AudioClip)Resources.Load(audioPath);
         battleSM.GetComponent<AudioSource>().PlayOneShot(enemyAttackAudio, 0.5f);
 
-        float seconds = 0.7f;
         enemy.currHP -= roundedDamage;
         if (enemy.currHP <= 0)
         {
-            seconds = 0.1f;
             enemy.currHP = 0;
             currentState = TurnState.DEAD;
         }
 
-        StartCoroutine(HideDamageText(seconds));
+        StartCoroutine(HideDamageText(0.7f));
     }
 
     void DoDamage()
