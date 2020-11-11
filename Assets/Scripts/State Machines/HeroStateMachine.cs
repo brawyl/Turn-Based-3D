@@ -41,6 +41,9 @@ public class HeroStateMachine : MonoBehaviour
     private HeroPanelStats stats;
     public GameObject heroPanel;
     private Transform heroPanelSpacer;
+    private Image heroBarBG;
+    private Color activeColor;
+    private Color inactiveColor;
 
     public bool activeTurn = false;
     public float delayValue = 0f;
@@ -87,11 +90,14 @@ public class HeroStateMachine : MonoBehaviour
                 {
                     //full opacity text on active turn
                     timerText.color = new Color(255, 255, 255, 1f);
+                    heroBarBG.color = activeColor;
+
                     UpdateDelayTimer();
                 }
                 else
                 {
                     timerText.color = new Color(255, 255, 255, 0.5f);
+                    heroBarBG.color = inactiveColor;
                 }
                 break;
 
@@ -318,13 +324,23 @@ public class HeroStateMachine : MonoBehaviour
     void CreateHeroPanel()
     {
         heroPanel = Instantiate(heroPanel) as GameObject;
+        
+        heroBarBG = heroPanel.GetComponent<Image>();
+        inactiveColor = heroBarBG.color;
+        inactiveColor.a = 0.1f;
+        activeColor = heroBarBG.color;
+        activeColor.a = 0.5f;
+        heroBarBG.color = inactiveColor;
+
         stats = heroPanel.GetComponent<HeroPanelStats>();
         stats.heroName.text = hero.theName;
         stats.heroHP.text = "HP: " + hero.currHP + "/" + hero.baseHP;
+
         timerText = stats.delayTimer;
         timerText.text = "0.00";
 
-        currCooldown = Random.Range(1f, Mathf.Clamp(hero.currSPD, 0, 8));
+        //randomize starting progress bar between 10% and hero's speed clamped up to 100%
+        currCooldown = Random.Range(1f, Mathf.Clamp(hero.currSPD, 2, 8));
 
         progressBar = stats.progressBar;
         healthBar = stats.healthBar;
