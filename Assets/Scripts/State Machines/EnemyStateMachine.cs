@@ -79,10 +79,10 @@ public class EnemyStateMachine : MonoBehaviour
                 {
                     //change tag to dead
                     this.gameObject.tag = "DeadEnemy";
-                    //cannot be targeted
-                    battleSM.enemiesInBattle.Remove(this.gameObject);
                     //disable the selector
                     selector.SetActive(false);
+                    //cannot be targeted
+                    battleSM.enemiesInBattle.Remove(this.gameObject);
 
                     //remove all inputs by this enemy
                     if (this.battleSM.enemiesInBattle.Count > 0)
