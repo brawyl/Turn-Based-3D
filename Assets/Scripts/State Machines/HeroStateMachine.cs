@@ -300,12 +300,13 @@ public class HeroStateMachine : MonoBehaviour
         //5% plus or minus on attack damage
         float damageRange = Random.Range(0.9f, 1.1f);
 
-        //crit on 1.xx delay value
+        //crit on n.xx delay value where n = number of enemies remaining
         //cannot crit an elemental attack
         bool crit = false;
+        string enemiesInBattle = battleSM.enemiesInBattle.Count.ToString();
         string[] elementList = { "WOOD", "FIRE", "EARTH", "METAL", "WATER" };
         int elementIndex = System.Array.IndexOf(elementList, attackingElement);
-        if (timerText.text.Substring(0,1).Equals("1") && elementIndex < 0)
+        if (timerText.text.Substring(0,1).Equals(enemiesInBattle) && elementIndex < 0)
         {
             StartCoroutine(cameraShake.Shake(.15f, .4f));
             damageRange = 1.5f;
