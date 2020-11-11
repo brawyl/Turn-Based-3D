@@ -209,7 +209,13 @@ public class HeroStateMachine : MonoBehaviour
         }
 
         //turn on particle effect
-        if (showParticles) { elementParticles.Play(); damageParticles.Stop(); }
+        if (showParticles)
+        {
+            elementParticles.Play();
+            damageParticles.Stop();
+            AudioClip enemyAttackAudio = (AudioClip)Resources.Load("audio/eq_hero_magic");
+            battleSM.GetComponent<AudioSource>().PlayOneShot(enemyAttackAudio, 0.5f);
+        }
 
         //animate the enemy near the target to attack
         Vector3 targetPosition = new Vector3(actionTarget.transform.position.x + 1.5f, actionTarget.transform.position.y, actionTarget.transform.position.z);

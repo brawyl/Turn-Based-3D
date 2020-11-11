@@ -20,6 +20,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     private float currCooldown = 0f;
     private float maxCooldown = 8f;
+
     //this gameobject
     private Vector3 startPosition;
     public GameObject selector;
@@ -188,6 +189,7 @@ public class EnemyStateMachine : MonoBehaviour
     public void TakeDamage(float damageAmount, string damageElement, bool crit)
     {
         string enemyElement = enemy.enemyType.ToString().ToUpper();
+        string audioPath = "audio/eq_hero_attack";
 
         //environment damage factor
         float environmentDamage = 1.0f;
@@ -211,17 +213,35 @@ public class EnemyStateMachine : MonoBehaviour
 
         damageText.GetComponent<TextMesh>().text = roundedDamage.ToString();
         damageText.SetActive(true);
-        if (crit) { critText.SetActive(true); }
-        if (elementDamage > 1) { weakText.SetActive(true); }
-        if (elementDamage < 1) { resistText.SetActive(true); }
-        StartCoroutine(HideDamageText());
+        if (crit)
+        {
+            critText.SetActive(true);
+            audioPath = "audio/eq_hero_crit";
+        }
+        if (elementDamage > 1)
+        {
+            weakText.SetActive(true);
+            audioPath = "audio/eq_magic_weak";
+        }
+        else if (elementDamage < 1)
+        {
+            resistText.SetActive(true);
+            audioPath = "audio/eq_magic_resist";
+        }
 
+        AudioClip enemyAttackAudio = (AudioClip)Resources.Load(audioPath);
+        battleSM.GetComponent<AudioSource>().PlayOneShot(enemyAttackAudio, 0.5f);
+
+        float seconds = 0.7f;
         enemy.currHP -= roundedDamage;
         if (enemy.currHP <= 0)
         {
+            seconds = 0.1f;
             enemy.currHP = 0;
             currentState = TurnState.DEAD;
         }
+
+        StartCoroutine(HideDamageText(seconds));
     }
 
     void DoDamage()
@@ -247,11 +267,14 @@ public class EnemyStateMachine : MonoBehaviour
         float calculatedDamage = baseDamage * environmentDamage * damageRange;
 
         actionTarget.GetComponent<HeroStateMachine>().TakeDamage(calculatedDamage);
+
+        AudioClip enemyAttackAudio = (AudioClip)Resources.Load("audio/eq_enemy_attack");
+        battleSM.GetComponent<AudioSource>().PlayOneShot(enemyAttackAudio, 0.5f);
     }
 
-    IEnumerator HideDamageText()
+    IEnumerator HideDamageText(float seconds)
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(seconds);
 
         damageText.SetActive(false);
         critText.SetActive(false);
