@@ -105,13 +105,12 @@ public class EnemyStateMachine : MonoBehaviour
                     Vector3 deadPosition = new Vector3(startPosition.x - 2f, startPosition.y, startPosition.z);
                     transform.position = deadPosition;
 
-                    //set alive to be false
-                    alive = false;
                     //reset enemy buttons
                     battleSM.EnemyButtons();
                     //check alive
                     battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
-
+                    //set alive to be false
+                    alive = false;
                 }
                 break;
             default:
@@ -203,7 +202,7 @@ public class EnemyStateMachine : MonoBehaviour
         //stacked element factor
         float elementDamage = elementalDamage(damageElement, enemyElement);
         string lastHitElement = enemy.lastHitType;
-        if (damageElement.Equals(lastHitElement))
+        if (damageElement.Equals(lastHitElement) && elementDamage != 1f)
         {
             elementDamage *= elementDamage; //square the elemental damage if the same element was used back to back
             stackText.SetActive(true);

@@ -117,9 +117,7 @@ public class HeroStateMachine : MonoBehaviour
                 selector.SetActive(false);
 
                 //reset GUI
-                battleSM.actionPanel.SetActive(false);
-                battleSM.targetSelectPanel.SetActive(false);
-                battleSM.magicPanel.SetActive(false);
+                battleSM.ClearAttackPanel();
 
                 if (battleSM.heroesInBattle.Count > 0 && battleSM.performList.Count > 1)
                 {

@@ -335,7 +335,7 @@ public class BattleStateMachine : MonoBehaviour
         }
     }
 
-    void ClearAttackPanel()
+    public void ClearAttackPanel()
     {
         targetSelectPanel.SetActive(false);
         actionPanel.SetActive(false);
