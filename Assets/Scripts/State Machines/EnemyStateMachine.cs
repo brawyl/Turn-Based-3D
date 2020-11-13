@@ -72,10 +72,7 @@ public class EnemyStateMachine : MonoBehaviour
                 StartCoroutine(TimeForAction());
                 break;
             case TurnState.DEAD:
-                if (!alive)
-                {
-                    return;
-                }
+                if (!alive) { break; }
                 else
                 {
                     //change tag to dead
@@ -105,6 +102,9 @@ public class EnemyStateMachine : MonoBehaviour
                     }
                     //change the color to gray / play dead animation
                     this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(0, 0, 0, 25);
+                    Vector3 deadPosition = new Vector3(startPosition.x - 2f, startPosition.y, startPosition.z);
+                    transform.position = deadPosition;
+
                     //set alive to be false
                     alive = false;
                     //reset enemy buttons
@@ -113,6 +113,8 @@ public class EnemyStateMachine : MonoBehaviour
                     battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
 
                 }
+                break;
+            default:
                 break;
         }
     }

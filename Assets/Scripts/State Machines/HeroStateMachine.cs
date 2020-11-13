@@ -107,7 +107,7 @@ public class HeroStateMachine : MonoBehaviour
                 break;
 
             case TurnState.DEAD:
-                if (!alive) { return; }
+                if (!alive) { break; }
 
                 //change tag to dead
                 this.gameObject.tag = "DeadHero";
@@ -121,7 +121,7 @@ public class HeroStateMachine : MonoBehaviour
                 battleSM.targetSelectPanel.SetActive(false);
                 battleSM.magicPanel.SetActive(false);
 
-                if (battleSM.heroesInBattle.Count > 0)
+                if (battleSM.heroesInBattle.Count > 0 && battleSM.performList.Count > 1)
                 {
                     for (int i = 0; i < battleSM.performList.Count; i++)
                     {
@@ -139,6 +139,8 @@ public class HeroStateMachine : MonoBehaviour
 
                 //change color / play death animation
                 this.gameObject.GetComponent<MeshRenderer>().material.color = new Color32(150, 150, 150, 255);
+                Vector3 deadPosition = new Vector3(startPosition.x + 2f, startPosition.y, startPosition.z);
+                transform.position = deadPosition;
 
                 battleSM.heroInput = BattleStateMachine.HeroGUI.DONE;
 
@@ -148,6 +150,8 @@ public class HeroStateMachine : MonoBehaviour
                 battleSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
 
                 alive = false;
+                break;
+            default:
                 break;
         }
     }

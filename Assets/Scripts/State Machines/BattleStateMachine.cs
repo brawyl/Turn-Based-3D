@@ -44,6 +44,8 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject magicPanel;
     public GameObject turnOrderPanel;
     public GameObject resultScreen;
+    public GameObject backPanel;
+
     public GameObject ground;
     public Camera mainCamera;
     public string environmentElement;
@@ -54,6 +56,9 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject actionButton;
     public GameObject magicActionButton;
     private List<GameObject> attackButtons = new List<GameObject>();
+
+    public Transform backSpacer;
+    public GameObject backButton;
 
     //turn order display
     public Transform turnOrderSpacer;
@@ -125,9 +130,14 @@ public class BattleStateMachine : MonoBehaviour
         heroesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
         heroInput = HeroGUI.ACTIVATE;
 
+        GameObject goBackButton = Instantiate(backButton) as GameObject;
+        goBackButton.GetComponent<Button>().onClick.AddListener(() => GoBack());
+        goBackButton.transform.SetParent(backSpacer, false);
+
         actionPanel.SetActive(false);
         targetSelectPanel.SetActive(false);
         magicPanel.SetActive(false);
+        backPanel.SetActive(false);
 
         EnemyButtons();
     }
@@ -231,6 +241,7 @@ public class BattleStateMachine : MonoBehaviour
                     heroChoice = new HandleTurn();
 
                     actionPanel.SetActive(true);
+                    backPanel.SetActive(false);
                     CreateAttackButtons();
 
                     heroInput = HeroGUI.WAITING;
@@ -288,6 +299,7 @@ public class BattleStateMachine : MonoBehaviour
 
         actionPanel.SetActive(false);
         targetSelectPanel.SetActive(true);
+        backPanel.SetActive(true);
     }
 
     public void InputTarget(GameObject target)
@@ -295,6 +307,16 @@ public class BattleStateMachine : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         heroChoice.targetGameObject = target;
         heroInput = HeroGUI.DONE;
+    }
+
+    public void GoBack()
+    {
+        GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
+
+        targetSelectPanel.SetActive(false);
+        magicPanel.SetActive(false);
+        backPanel.SetActive(false);
+        actionPanel.SetActive(true);
     }
 
     void HeroInputDone()
@@ -318,6 +340,7 @@ public class BattleStateMachine : MonoBehaviour
         targetSelectPanel.SetActive(false);
         actionPanel.SetActive(false);
         magicPanel.SetActive(false);
+        backPanel.SetActive(false);
 
         foreach (GameObject atkBtn in attackButtons)
         {
@@ -408,6 +431,7 @@ public class BattleStateMachine : MonoBehaviour
         GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("audio/button"), 0.5f);
         actionPanel.SetActive(false);
         magicPanel.SetActive(true);
+        backPanel.SetActive(true);
     }
 
     public void InputMagic(BaseAttack chosenMagic)
@@ -420,6 +444,7 @@ public class BattleStateMachine : MonoBehaviour
         heroChoice.chosenAttack = chosenMagic;
         magicPanel.SetActive(false);
         targetSelectPanel.SetActive(true);
+        backPanel.SetActive(true);
     }
 
     IEnumerator WinBattle()
