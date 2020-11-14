@@ -115,6 +115,8 @@ public class HeroStateMachine : MonoBehaviour
                 battleSM.heroesInBattle.Remove(this.gameObject);
                 //disable the selector
                 selector.SetActive(false);
+                timerText.color = new Color(255, 255, 255, 0.5f);
+                heroBarBG.color = inactiveColor;
 
                 //reset GUI
                 battleSM.ClearAttackPanel();
