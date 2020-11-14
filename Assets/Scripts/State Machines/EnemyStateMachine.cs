@@ -54,8 +54,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(currentState);
-
+        if (!alive) { currentState = TurnState.DEAD; }
         switch (currentState)
         {
             case TurnState.PROCESSING:
